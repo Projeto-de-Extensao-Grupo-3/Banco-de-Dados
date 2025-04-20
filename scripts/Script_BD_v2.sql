@@ -24,8 +24,8 @@ CREATE TABLE IF NOT EXISTS `controle_acesso` (
   FOREIGN KEY (`fk_permissao`) REFERENCES `permissao` (`id_permissao`)
 );
 
-CREATE TABLE IF NOT EXISTS `local_armazenameno` (
-  `id_local_armazenameno` INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `local_armazenamento` (
+  `id_local_armazenamento` INT PRIMARY KEY AUTO_INCREMENT,
   `num_prateleira` VARCHAR(10) UNIQUE NOT NULL
 );
 
@@ -40,13 +40,12 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
   `fk_categoria` INT NOT NULL,
   `fk_local_armazenamento` INT NOT NULL,
-  `descricao` VARCHAR(45),
-  `complemento` VARCHAR(60),
+  `descricao` VARCHAR(60),
   `peso` DECIMAL(5,2),
   `qtd_minimo` DECIMAL(5,2),
   `qtd_armazenado` DECIMAL(5,2),
   FOREIGN KEY (`fk_categoria`) REFERENCES `categoria` (`id_categoria`),
-  FOREIGN KEY (`fk_local_armazenamento`) REFERENCES `local_armazenameno` (`id_local_armazenameno`)
+  FOREIGN KEY (`fk_local_armazenamento`) REFERENCES `local_armazenamento` (`id_local_armazenamento`)
 );
 
 CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
@@ -111,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `saida_estoque` (
 );
 
 CREATE TABLE IF NOT EXISTS `corte_tecido` (
-  `id_corte_tecido` INT NOT NULL,
+  `id_corte_tecido` INT NOT NULL AUTO_INCREMENT,
   `fk_lote` INT NOT NULL,
   `fk_tecido` INT NOT NULL,
   `fk_funcionario` INT NOT NULL,
