@@ -61,15 +61,15 @@ UPDATE funcionario SET nome = 'Bruno Yuji', email = 'bruno.y@gmail.com.br' WHERE
 SELECT * FROM funcionario;
 
 -- Cadastro de identificação de prateleiras/local de armazenamento.
-DESC local_armazenamento;
-INSERT INTO local_armazenamento (num_prateleira) VALUES
+DESC prateleira;
+INSERT INTO prateleira (codigo_prateleira) VALUES
 	('1R'),
 	('2R'),
 	('3R'),
 	('1T'),
 	('2T'),
 	('3T');
-SELECT * FROM local_armazenamento;
+SELECT * FROM prateleira;
 
 -- Categorias roupa e tecido serão fixas no banco de dados.
 DESC categoria;
@@ -109,7 +109,7 @@ SELECT * FROM categoria;
 
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
 DESC item_estoque;
-INSERT INTO item_estoque (fk_categoria, fk_local_armazenamento, descricao, peso, qtd_minimo, qtd_armazenado) VALUES
+INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado) VALUES
 	(8, 1, 'Vestido azul florido', 1.0, 0, 0),
 	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 0),
 	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 0),
@@ -150,13 +150,11 @@ WHERE categoria.nome = 'Roupa';
 -- Filtrar itens do estoque por caracteristica.
 SELECT id_item_estoque, descricao, qtd_armazenado, nome AS 'característica'
 FROM item_estoque
-JOIN caracteristica_item_estoque c
-ON id_item_estoque = c.fk_item_estoque
-JOIN categoria
-ON id_categoria = c.fk_categoria
+	JOIN caracteristica_item_estoque c ON id_item_estoque = c.fk_item_estoque
+	JOIN categoria ON id_categoria = c.fk_categoria
 WHERE nome = 'Azul';
 
--- Listar roupas dos estoque com suas características.
+-- Listar roupas do estoque com suas características.
 SELECT id_item_estoque, descricao, qtd_armazenado, 
 categoria.nome AS 'categoria', subcategoria.nome AS 'subcategoria', caracteristica.nome AS 'característica'
 FROM item_estoque 
@@ -165,6 +163,17 @@ FROM item_estoque
 	JOIN caracteristica_item_estoque ON id_item_estoque = fk_item_estoque
 	JOIN categoria AS caracteristica ON caracteristica.id_categoria = caracteristica_item_estoque.fk_categoria
 WHERE categoria.nome = 'Roupa';
+
+-- Verificar as prateleiras em que se encontram cada item.
+SELECT id_item_estoque, descricao, qtd_armazenado, codigo_prateleira 
+FROM item_estoque
+JOIN prateleira ON id_prateleira = fk_prateleira;
+
+-- Verificar a prateleira em que se encontra uma peça de roupa específica.
+SELECT id_item_estoque, descricao, qtd_armazenado, codigo_prateleira 
+FROM item_estoque
+JOIN prateleira ON id_prateleira = fk_prateleira
+WHERE descricao = 'Vestido azul florido';
 
 -- Listar tecidos do estoque
 SELECT id_item_estoque, descricao, qtd_armazenado, categoria.nome AS 'categoria', subcategoria.nome AS 'subcategoria'
