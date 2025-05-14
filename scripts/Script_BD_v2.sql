@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   FOREIGN KEY (`fk_tecido`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
 
-CREATE TABLE IF NOT EXISTS `servico_terceiro` (
-  `id_servico_terceiro` INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `parceiro` (
+  `id_parceiro` INT PRIMARY KEY AUTO_INCREMENT,
   `categoria` VARCHAR(45),
   `nome` VARCHAR(60),
   `telefone` CHAR(12),
@@ -78,9 +78,9 @@ CREATE TABLE IF NOT EXISTS `lote` (
   `id_lote` INT PRIMARY KEY AUTO_INCREMENT,
   `descricao` VARCHAR(45),
   `dt_entrada` DATETIME,
-  `fk_servico_terceiro` INT NOT NULL,
+  `fk_parceiro` INT NOT NULL,
   `fk_responsavel` INT NOT NULL,
-  FOREIGN KEY (`fk_servico_terceiro`) REFERENCES `servico_terceiro` (`id_servico_terceiro`),
+  FOREIGN KEY (`fk_parceiro`) REFERENCES `parceiro` (`id_parceiro`),
   FOREIGN KEY (`fk_responsavel`) REFERENCES `funcionario` (`id_funcionario`)
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS `saida_estoque` (
   `fk_costureira` INT NULL,
   FOREIGN KEY (`fk_responsavel`) REFERENCES `funcionario` (`id_funcionario`),
   FOREIGN KEY (`fk_lote`, `fk_item_estoque`) REFERENCES `lote_item_estoque` (`fk_lote`, `fk_item_estoque`),
-  FOREIGN KEY (`fk_costureira`) REFERENCES `servico_terceiro` (`id_servico_terceiro`)
+  FOREIGN KEY (`fk_costureira`) REFERENCES `parceiro` (`id_parceiro`)
 );
 
 CREATE TABLE IF NOT EXISTS `corte_tecido` (

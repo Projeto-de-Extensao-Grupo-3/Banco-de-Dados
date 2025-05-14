@@ -124,9 +124,9 @@ SELECT * FROM item_estoque;
 SELECT * FROM categoria WHERE fk_categoria_pai IS NULL;
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
 	(13, 1),
-	(19, 1),
+	(20, 1),
 	(14, 2),
-	(18, 2),
+	(19, 2),
 	(17, 3),
 	(18, 3),
 	(14, 3),
@@ -220,25 +220,25 @@ tecido.id_item_estoque, tecido.descricao
 WHERE roupa.id_item_estoque = 3;
 
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
-DESC servico_terceiro;
-INSERT INTO servico_terceiro (categoria, nome, telefone, email, endereco) VAlUES 
+DESC parceiro;
+INSERT INTO parceiro (categoria, nome, telefone, email, endereco) VAlUES 
 	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua X'),
 	('costureira', 'Alice', '11938563748', 'alice@gmail.com', 'Rua Y'),
 	('costureira', 'Rebeca', '11938563748', 'rebeca@gmail.com', 'Rua Z'),
 	('fornecedor', 'Best Tecidos', '11918465729', 'best_tecidos@gmail.com', 'Rua 1'),
 	('fornecedor', 'Fornecedor X', '11918465729', 'fornecedorx@gmail.com', 'Rua 2'),
 	('fornecedor', 'Fornecedor Z', '11918465729', 'fornecedorys@gmail.com', 'Rua 3');
-SELECT * FROM servico_terceiro;
+SELECT * FROM parceiro;
 
 -- Cadastro de lote de roupa.
 DESC lote;
-INSERT INTO lote (descricao, dt_entrada, fk_servico_terceiro, fk_responsavel) VAlUES 
+INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
 	('lote de roupas', '2025-04-20 11:36:00', 1, 1);
 SELECT * FROM lote;
 
 -- Cadastro de lote de tecido.
 DESC lote;
-INSERT INTO lote (descricao, dt_entrada, fk_servico_terceiro, fk_responsavel) VAlUES 
+INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
 	('lote de tecido', '2025-04-20 11:36:00', 2, 2);
 SELECT * FROM lote;
 
@@ -298,12 +298,12 @@ SELECT * FROM controle_acesso;
 SELECT * FROM corte_tecido;
 SELECT * FROM funcionario;
 SELECT * FROM item_estoque;
-SELECT * FROM local_armazenamento;
+SELECT * FROM prateleira;
 SELECT * FROM lote;
 SELECT * FROM lote_item_estoque;
 SELECT * FROM permissao;
 SELECT * FROM saida_estoque;
-SELECT * FROM servico_terceiro;
+SELECT * FROM parceiro;
 
 -- Verificar estrutura das Triggers criadas.
 SHOW TRIGGERS;
