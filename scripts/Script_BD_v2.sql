@@ -44,8 +44,16 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   `peso` DECIMAL(5,2),
   `qtd_minimo` DECIMAL(5,2),
   `qtd_armazenado` DECIMAL(5,2),
+  `preco` DECIMAL(5,2),
   FOREIGN KEY (`fk_categoria`) REFERENCES `categoria` (`id_categoria`),
   FOREIGN KEY (`fk_prateleira`) REFERENCES `prateleira` (`id_prateleira`)
+);
+
+CREATE TABLE IF NOT EXISTS `alerta` (
+  `id_alerta` INT PRIMARY KEY,
+  `fk_item_estoque` INT NOT NULL,
+  `descricao` VARCHAR(45) NOT NULL,
+  FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
 
 CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
@@ -59,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `fk_roupa` INT NOT NULL,
   `fk_tecido` INT NOT NULL,
+  `qtd_tecido` DECIMAL(5,2),
   PRIMARY KEY (`fk_roupa`, `fk_tecido`),
   FOREIGN KEY (`fk_roupa`) REFERENCES `item_estoque` (`id_item_estoque`),
   FOREIGN KEY (`fk_tecido`) REFERENCES `item_estoque` (`id_item_estoque`)

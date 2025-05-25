@@ -109,13 +109,13 @@ SELECT * FROM categoria;
 
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
 DESC item_estoque;
-INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado) VALUES
-	(8, 1, 'Vestido azul florido', 1.0, 0, 0),
-	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 0),
-	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 0),
-	(5, 4, 'Tecido vermelho liso', 1.0, 0, 0),
-	(6, 5, 'Tecido azul florido', 1.0, 0, 0),
-	(3, 6, 'Tecido cinza liso', 1.0, 0, 0);
+INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco) VALUES
+	(8, 1, 'Vestido azul florido', 1.0, 0, 0, NULL),
+	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 0, NULL),
+	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 0, NULL),
+	(5, 4, 'Tecido vermelho liso', 1.0, 0, 0, 100.0),
+	(6, 5, 'Tecido azul florido', 1.0, 0, 0, 150.0),
+	(3, 6, 'Tecido cinza liso', 1.0, 0, 0, 200.0);
 SELECT * FROM item_estoque;
 
 -- Cadastro de características de cada produto e tecido.
@@ -196,11 +196,11 @@ WHERE categoria.nome = 'Tecido';
 
 -- Relacionar os tecidos que compõem uma peça de roupa.
 DESC confeccao_roupa;
-INSERT INTO confeccao_roupa (fk_roupa, fk_tecido) VALUES
-	(1, 5),
-	(2, 4),
-	(3, 4),
-	(3, 6);
+INSERT INTO confeccao_roupa (fk_roupa, fk_tecido, qtd_tecido) VALUES
+	(1, 5, 10.0),
+	(2, 4, 10.0),
+	(3, 4, 10.0),
+	(3, 6, 10.0);
 SELECT * FROM confeccao_roupa;
 
 -- Listar tecidos que compõem cada peça de roupa;
@@ -289,6 +289,19 @@ JOIN corte_tecido ON id_funcionario = fk_funcionario;
 SELECT nome, id_corte_tecido, fk_lote, fk_tecido, inicio, termino FROM funcionario
 JOIN corte_tecido ON id_funcionario = fk_funcionario
 WHERE nome = 'Fernando';
+
+-- Verificar custo de produção das peças de roupa.
+SELECT roupa.id_item_estoque, roupa.descricao,
+SUM(c.qtd_tecido * tecido.preco + lt_item.preco) AS CUSTO_TOTAL
+	FROM item_estoque AS roupa 
+	JOIN confeccao_roupa AS c 
+		ON roupa.id_item_estoque = fk_roupa
+	JOIN item_estoque AS tecido 
+		ON tecido.id_item_estoque = fk_tecido
+	JOIN lote_item_estoque AS lt_item
+		ON lt_item.fk_item_estoque = roupa.id_item_estoque
+GROUP BY roupa.id_item_estoque
+ORDER BY roupa.id_item_estoque;
 
 -- Visualização geral.
 SELECT * FROM caracteristica_item_estoque;
