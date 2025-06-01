@@ -53,6 +53,7 @@ CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY,
   `fk_item_estoque` INT NOT NULL,
   `descricao` VARCHAR(45) NOT NULL,
+  `data_hora` DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
 
