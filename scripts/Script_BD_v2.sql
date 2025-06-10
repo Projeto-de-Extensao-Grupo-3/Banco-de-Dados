@@ -5,15 +5,15 @@ USE projeto_extensao;
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `id_funcionario` INT PRIMARY KEY AUTO_INCREMENT,
   `nome` VARCHAR(80),
-  `cpf` CHAR(11),
-  `telefone` CHAR(12),
+  `cpf` CHAR(14),
+  `telefone` CHAR(13),
   `email` VARCHAR(60),
-  `senha` VARCHAR(45)
+  `senha` VARCHAR(80)
 );
 -- Cadastro de funcionários.
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Bruno', '83756473891', '11985647381', 'bruno@gmail.com', '123456@'),
-	('Fernando', '83756473892', '11985647382', 'fernando@gmail.com', '123456@'),
+	('Fernando Almeida', '000.000.000-00', '55 900000000', 'fernando_almeida@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
 	('Giorgio', '83756473893', '11985647383', 'giorgio@gmail.com', '123456@'),
 	('Guilherme', '83756473894', '11985647384', 'guilherme@gmail.com', '123456@'),
 	('João', '83756473895', '11985647385', 'joao@gmail.com', '123456@'),
@@ -131,12 +131,12 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
 );
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
 INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco) VALUES
-	(8, 1, 'Vestido azul florido', 1.0, 0, 0, NULL),
-	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 0, NULL),
-	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 0, NULL),
-	(5, 4, 'Tecido vermelho liso', 1.0, 0, 0, 100.0),
-	(6, 5, 'Tecido azul florido', 1.0, 0, 0, 150.0),
-	(3, 6, 'Tecido cinza liso', 1.0, 0, 0, 200.0);
+	(8, 1, 'Vestido azul florido', 1.0, 0, 5, NULL),
+	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL),
+	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL),
+	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0),
+	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0),
+	(3, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0);
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY,
