@@ -83,7 +83,8 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 -- Categorias roupa e tecido serão fixas no banco de dados.
 INSERT INTO categoria (nome) VALUES
 	('Tecido'),
-	('Roupa');
+	('Roupa'),
+    ('Característica');
 -- Cadastro de subcategorias para tecido e roupa.
 INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 	('Nylon', 1),
@@ -97,17 +98,17 @@ INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 	('Shorts', 2),
 	('Saia', 2);
 -- Cadastro de características de tecido e produto.
-INSERT INTO categoria (nome) VALUES
-	('Azul'),
-	('Vermelho'),
-	('Verde'),
-	('Amarelo'),
-	('Cinza'),
-	('Listrado'),
-	('Liso'),
-	('Florido'),
-	('Grosso'),
-	('Fino');
+INSERT INTO categoria (nome, fk_categoria_pai) VALUES
+	('Azul', 3),
+	('Vermelho', 3),
+	('Verde', 3),
+	('Amarelo', 3),
+	('Cinza', 3),
+	('Listrado', 3),
+	('Liso', 3),
+	('Florido', 3),
+	('Grosso', 3),
+	('Fino', 3);
 
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
@@ -194,13 +195,13 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
   `identificacao` VARCHAR(20)
 );
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
-INSERT INTO parceiro (categoria, nome, telefone, email, endereco) VAlUES 
-	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua X'),
-	('costureira', 'Alice', '11938563748', 'alice@gmail.com', 'Rua Y'),
-	('costureira', 'Rebeca', '11938563748', 'rebeca@gmail.com', 'Rua Z'),
-	('fornecedor', 'Best Tecidos', '11918465729', 'best_tecidos@gmail.com', 'Rua 1'),
-	('fornecedor', 'Fornecedor X', '11918465729', 'fornecedorx@gmail.com', 'Rua 2'),
-	('fornecedor', 'Fornecedor Z', '11918465729', 'fornecedorys@gmail.com', 'Rua 3');
+INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao) VAlUES 
+	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua X', '000.000.000-00'),
+	('costureira', 'Alice', '11938563748', 'alice@gmail.com', 'Rua Y', '000.000.000-01'),
+	('costureira', 'Rebeca', '11938563748', 'rebeca@gmail.com', 'Rua Z', '000.000.000-02'),
+	('fornecedor', 'Best Tecidos', '11918465729', 'best_tecidos@gmail.com', 'Rua 1', '00.000.000/0000-00'),
+	('fornecedor', 'Fornecedor X', '11918465729', 'fornecedorx@gmail.com', 'Rua 2', '00.000.000/0000-00'),
+	('fornecedor', 'Fornecedor Z', '11918465729', 'fornecedorys@gmail.com', 'Rua 3', '00.000.000/0000-00');
 
 CREATE TABLE IF NOT EXISTS `lote` (
   `id_lote` INT PRIMARY KEY AUTO_INCREMENT,

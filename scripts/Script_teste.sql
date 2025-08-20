@@ -5,16 +5,16 @@ USE projeto_extensao;
 SHOW TABLES;
 
 -- ===========================================VISUALIZAÇÃO DOS DADOS=========================================== --
+SELECT * FROM lote_item_estoque;
+SELECT * FROM item_estoque;
 SELECT * FROM caracteristica_item_estoque;
 SELECT * FROM categoria;
 SELECT * FROM confeccao_roupa;
 SELECT * FROM controle_acesso;
 SELECT * FROM corte_tecido;
 SELECT * FROM funcionario;
-SELECT * FROM item_estoque;
 SELECT * FROM prateleira;
 SELECT * FROM lote;
-SELECT * FROM lote_item_estoque;
 SELECT * FROM permissao;
 SELECT * FROM saida_estoque;
 SELECT * FROM parceiro;
@@ -136,3 +136,28 @@ SELECT nome, id_corte_tecido, fk_lote, fk_tecido, inicio, termino FROM funcionar
 JOIN corte_tecido ON id_funcionario = fk_funcionario
 WHERE nome = 'Fernando';
 -- =============================================================================================================== --
+
+-- ================================= TESTES DE CONSULTA DA TABELA  DE CATEGORIAS ================================= --
+-- Listando somente características
+SELECT * FROM categoria AS p
+JOIN categoria As f
+ON f.fk_categoria_pai = p.id_categoria
+AND p.nome = "Característica";
+
+-- Listando somente categorias
+SELECT * FROM categoria AS p
+JOIN categoria As f
+ON f.fk_categoria_pai = p.id_categoria
+AND p.nome != "Característica";
+
+-- Listando somente tipos de roupa
+SELECT * FROM categoria AS p
+JOIN categoria As f
+ON f.fk_categoria_pai = p.id_categoria
+AND p.nome = "Roupa";
+
+-- Listando somente tipos de tecido
+SELECT * FROM categoria AS p
+JOIN categoria As f
+ON f.fk_categoria_pai = p.id_categoria
+AND p.nome = "Tecido";
