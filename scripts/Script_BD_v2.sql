@@ -112,8 +112,16 @@ INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
-    `url` VARCHAR(100)
+    `url` VARCHAR(200)
 );
+
+INSERT INTO imagem (url) VALUES
+	("https://cdn.awsli.com.br/600x700/143/143951/produto/32328172/7fa3e6d61c.jpg"),
+	("https://static.zattini.com.br/produtos/camiseta-masculina-algodao-basica-camisa-lisa-vermelha/16/GZ0-0008-016/GZ0-0008-016_zoom1.jpg?ts=1670339407"),
+	("https://lojaspeedo.vtexassets.com/arquivos/ids/206110/139569Q_245049_1-BERMUDA-BOLD.jpg?v=637945525518130000"),
+	("https://images.tcdn.com.br/img/img_prod/632834/rolo_de_tecido_tule_50_metros_x_1_20_mt_largura_vermelho_9911_1_1cdde84963063c6dbefff762c02f8b95.jpg"),
+	("https://tfcszo.vteximg.com.br/arquivos/ids/195046/6661-TECIDO-TRICOLINE-ESTAMPADO-FLORAL-AZUL-MARINHO--2-.jpg?v=638521737026530000"),
+	("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDWAcBlgdzuPL_hGF8qPuVGKpKo6cruBwmQ&s");
 
 CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
@@ -131,13 +139,13 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   FOREIGN KEY (`fk_imagem`) REFERENCES `imagem` (`id_imagem`)
 );
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
-INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco) VALUES
-	(8, 1, 'Vestido azul florido', 1.0, 0, 5, NULL),
-	(9, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL),
-	(11, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL),
-	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0),
-	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0),
-	(3, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0);
+INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco, fk_imagem) VALUES
+	(9, 1, 'Vestido azul florido', 1.0, 0, 5, NULL, 1),
+	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL, 2),
+	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL, 3),
+	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0, 4),
+	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0, 5),
+	(4, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0, 6);
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
@@ -156,19 +164,19 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
 );
 -- Cadastro de características de cada produto e tecido.
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
-	(13, 1),
-	(20, 1),
-	(14, 2),
-	(19, 2),
-	(17, 3),
+	(14, 1),
+	(21, 1),
+	(15, 2),
+	(20, 2),
 	(18, 3),
-	(14, 3),
-	(14, 4),
-	(19, 4),
-	(13, 5),
-	(20, 5),
-	(17, 6),
-	(19, 6);
+	(19, 3),
+	(15, 3),
+	(15, 4),
+	(20, 4),
+	(14, 5),
+	(21, 5),
+	(18, 6),
+	(20, 6);
 
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `id_confeccao_roupa` INT PRIMARY KEY AUTO_INCREMENT,
