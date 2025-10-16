@@ -129,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   `fk_prateleira` INT,
   `fk_imagem` INT,
   `descricao` VARCHAR(60),
+	`notificar` BOOLEAN,
   `complemento` VARCHAR(45),
   `peso` DECIMAL(5,2),
   `qtd_minimo` DECIMAL(5,2),
@@ -139,13 +140,13 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   FOREIGN KEY (`fk_imagem`) REFERENCES `imagem` (`id_imagem`)
 );
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
-INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco, fk_imagem) VALUES
-	(9, 1, 'Vestido azul florido', 1.0, 0, 5, NULL, 1),
-	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL, 2),
-	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL, 3),
-	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0, 4),
-	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0, 5),
-	(4, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0, 6);
+INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco, notificar, fk_imagem) VALUES
+	(9, 1, 'Vestido azul florido', 1.0, 0, 5, NULL, true, 1),
+	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL, false, 2),
+	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL, true, 3),
+	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0, false, 4),
+	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0, false, 5),
+	(4, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0, true, 6);
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
