@@ -3,7 +3,8 @@
 
 USE projeto_extensao;
 SHOW TABLES;
-
+delete from imagem where id_imagem = 7;
+delete from item_estoque where id_item_estoque = 14;
 -- ===========================================VISUALIZAÇÃO DOS DADOS=========================================== --
 SELECT * FROM lote_item_estoque;
 SELECT * FROM item_estoque;
@@ -121,7 +122,7 @@ ORDER BY roupa.id_item_estoque;
 SELECT f.nome, p.descricao FROM funcionario f 
 	JOIN controle_acesso c ON f.id_funcionario = c.fk_funcionario
 	JOIN permissao p ON p.id_permissao = c.fk_permissao
-WHERE f.nome = 'Bruno';
+WHERE f.nome = 'Bruno Yuji';
     
 -- Atualização de dados de funcionário.
 UPDATE funcionario SET nome = 'Bruno Yuji', email = 'bruno.y@gmail.com.br' WHERE id_funcionario = 1;
