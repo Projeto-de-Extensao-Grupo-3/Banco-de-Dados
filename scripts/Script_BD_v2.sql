@@ -300,7 +300,8 @@ CREATE VIEW autocomplete_saida AS
 SELECT * FROM (
   SELECT lie.fk_lote, 
   lie.fk_item_estoque, 
-  ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade
+  ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade,
+  lie.preco
     FROM lote_item_estoque as lie 
       JOIN saida_estoque as se
         ON lie.id_lote_item_estoque = se.fk_lote_item_estoque
@@ -311,7 +312,8 @@ SELECT * FROM (
   SELECT lie.fk_lote,  
   lie.fk_item_estoque, 
   ie.descricao, 
-  qtd_item as quantidade
+  qtd_item as quantidade,
+  ie.preco
     FROM lote_item_estoque as lie
       JOIN item_estoque as ie
         ON ie.id_item_estoque = lie.fk_item_estoque
