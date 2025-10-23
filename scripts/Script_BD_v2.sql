@@ -295,3 +295,26 @@ INSERT INTO corte_tecido (fk_lote_item_estoque, fk_funcionario, inicio, termino)
 -- 	FOR EACH ROW UPDATE item_estoque SET qtd_armazenado = qtd_armazenado - NEW.qtd_saida
 -- 		WHERE item_estoque.id_item_estoque = NEW.fk_item_estoque;
 -- DROP TRIGGER update_stock_saida;
+
+CREATE VIEW autocomplete_saida AS
+SELECT * FROM (
+  SELECT lie.fk_lote, 
+  lie.fk_item_estoque, 
+  ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade
+    FROM lote_item_estoque as lie 
+      JOIN saida_estoque as se
+        ON lie.id_lote_item_estoque = se.fk_lote_item_estoque
+      JOIN item_estoque as ie
+        ON ie.id_item_estoque = lie.fk_item_estoque
+      GROUP BY lie.fk_item_estoque, se.fk_lote_item_estoque, lie.fk_lote
+        UNION
+  SELECT lie.fk_lote,  
+  lie.fk_item_estoque, 
+  ie.descricao, 
+  qtd_item as quantidade
+    FROM lote_item_estoque as lie
+      JOIN item_estoque as ie
+        ON ie.id_item_estoque = lie.fk_item_estoque
+      WHERE lie.id_lote_item_estoque NOT IN (SELECT se.fk_lote_item_estoque FROM saida_estoque as se)
+    ) as t WHERE quantidade > 0 
+  ORDER BY t.descricao, t.fk_lote;
