@@ -227,6 +227,12 @@ INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES
 -- Cadastro de lote de tecido.
 INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
 	('lote de tecido', '2025-04-20 11:36:00', 2, 2);
+-- Cadastro de lote de roupa (2)
+INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
+	('lote de roupas', '2025-04-24 08:29:23', 1, 1);
+-- Cadastro de lote de tecido (2)
+INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
+	('lote de tecidos', '2025-04-22 16:54:17', 2, 1);
 
 CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
   `id_lote_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
@@ -237,15 +243,30 @@ CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
   FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`),
   FOREIGN KEY (`fk_lote`)REFERENCES `lote` (`id_lote`)
 );
--- Cadastro dos itens de um lote.
-INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VAlUES -- teste roupa
+
+-- Cadastro dos itens de um lote (lote 1 - roupas).
+INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES -- teste roupa
 	(1, 1, 5, 100.0),
     (1, 2, 3, 150.0),
     (1, 3, 10, 200.0);
-INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VAlUES -- teste tecido
+-- Cadastro dos itens de um lote (lote 2 - tecido).
+INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
 	(2, 4, 3.5, 80.0),
 	(2, 5, 6.5, 70.0),
 	(2, 6, 12.5, 120.0);
+-- Cadastro dos itens de um lote (lote 3 - roupas).
+INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
+	(3, 1, 20, 350.0),
+	(3, 2, 26, 1100.0),
+	(3, 3, 18, 300.0);
+-- Cadastro dos itens de um lote (lote 4 - tecido).
+INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
+	(4, 4, 8.9, 200.0),
+	(4, 5, 20.8, 200.0),
+	(4, 6, 31.4, 300.0);
+
+
+SELECT * FROM projeto_extensao.categoria;
 
 CREATE TABLE IF NOT EXISTS `saida_estoque` (
   `id_saida_estoque` INT PRIMARY KEY AUTO_INCREMENT,
@@ -320,3 +341,9 @@ SELECT * FROM (
       WHERE lie.id_lote_item_estoque NOT IN (SELECT se.fk_lote_item_estoque FROM saida_estoque as se)
     ) as t WHERE quantidade > 0 
   ORDER BY t.descricao, t.fk_lote;
+
+select * from projeto_extensao.lote_item_estoque lie;
+
+select * from projeto_extensao.caracteristica_item_estoque;
+
+delete from projeto_extensao.caracteristica_item_estoque where fk_categoria = 20;
