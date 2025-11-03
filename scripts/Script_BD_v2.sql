@@ -322,19 +322,21 @@ SELECT * FROM (
   SELECT lie.fk_lote, 
   lie.fk_item_estoque, 
   ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade,
-  lie.preco
+  lie.preco,
+  lie.id_lote_item_estoque
     FROM lote_item_estoque as lie 
       JOIN saida_estoque as se
         ON lie.id_lote_item_estoque = se.fk_lote_item_estoque
       JOIN item_estoque as ie
         ON ie.id_item_estoque = lie.fk_item_estoque
-      GROUP BY lie.fk_item_estoque, se.fk_lote_item_estoque, lie.fk_lote
+      GROUP BY lie.fk_item_estoque, se.fk_lote_item_estoque, lie.fk_lote, lie.id_lote_item_estoque
         UNION
   SELECT lie.fk_lote,  
   lie.fk_item_estoque, 
   ie.descricao, 
   qtd_item as quantidade,
-  ie.preco
+  ie.preco,
+  lie.id_lote_item_estoque
     FROM lote_item_estoque as lie
       JOIN item_estoque as ie
         ON ie.id_item_estoque = lie.fk_item_estoque
@@ -342,8 +344,4 @@ SELECT * FROM (
     ) as t WHERE quantidade > 0 
   ORDER BY t.descricao, t.fk_lote;
 
-select * from projeto_extensao.lote_item_estoque lie;
-
-select * from projeto_extensao.caracteristica_item_estoque;
-
-delete from projeto_extensao.caracteristica_item_estoque where fk_categoria = 20;
+SELECT * FROM autocomplete_saida;
