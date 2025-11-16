@@ -322,7 +322,7 @@ SELECT * FROM (
   SELECT lie.fk_lote, 
   lie.fk_item_estoque, 
   ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade,
-  lie.preco,
+  ie.preco,
   lie.id_lote_item_estoque,
   c.fk_categoria_pai
     FROM lote_item_estoque as lie 
@@ -350,5 +350,5 @@ SELECT * FROM (
     ) as t WHERE quantidade > 0 
   ORDER BY t.descricao, t.fk_lote;
 
-drop view projeto_extensao.autocomplete_saida;
+drop view use projeto_extensao.autocomplete_saida;
 SELECT * FROM autocomplete_saida;
