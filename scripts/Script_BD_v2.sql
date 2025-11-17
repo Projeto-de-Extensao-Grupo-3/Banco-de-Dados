@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 -- Cadastro de funcionários.
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Bruno', '83756473891', '11985647381', 'bruno@gmail.com', '123456@'),
-	('Fernando Almeida', '000.000.000-00', '55 900000000', 'fernando_almeida@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
+	('Fernando Almeida', '00000000000', '55900000000', 'fernando_almeida@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
 	('Giorgio', '83756473893', '11985647383', 'giorgio@gmail.com', '123456@'),
 	('Guilherme', '83756473894', '11985647384', 'guilherme@gmail.com', '123456@'),
 	('João', '83756473895', '11985647385', 'joao@gmail.com', '123456@'),
@@ -125,7 +125,7 @@ INSERT INTO imagem (url) VALUES
 
 CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
-  `fk_categoria` INT NOT NULL,
+  `fk_categoria` INT,
   `fk_prateleira` INT,
   `fk_imagem` INT,
   `descricao` VARCHAR(60),
@@ -141,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
 );
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
 INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco, notificar, fk_imagem) VALUES
-	(9, 1, 'Vestido azul florido', 1.0, 0, 5, NULL, true, 1),
-	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3, NULL, false, 2),
-	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10, NULL, true, 3),
+	(9, 1, 'Vestido azul florido', 1.0, 0, 5.0, NULL, true, 1),
+	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3.0, NULL, false, 2),
+	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10.0, NULL, true, 3),
 	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0, false, 4),
 	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0, false, 5),
 	(4, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0, true, 6);
@@ -205,12 +205,12 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
 );
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
 INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao) VAlUES 
-	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua X', '000.000.000-00'),
-	('costureira', 'Alice', '11938563748', 'alice@gmail.com', 'Rua Y', '000.000.000-01'),
-	('costureira', 'Rebeca', '11938563748', 'rebeca@gmail.com', 'Rua Z', '000.000.000-02'),
-	('fornecedor', 'Best Tecidos', '11918465729', 'best_tecidos@gmail.com', 'Rua 1', '00.000.000/0000-00'),
-	('fornecedor', 'Fornecedor X', '11918465729', 'fornecedorx@gmail.com', 'Rua 2', '00.000.000/0000-00'),
-	('fornecedor', 'Fornecedor Z', '11918465729', 'fornecedorys@gmail.com', 'Rua 3', '00.000.000/0000-00');
+	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua X', '00000000000'),
+	('costureira', 'Alice', '11938563748', 'alice@gmail.com', 'Rua Y', '00000000001'),
+	('costureira', 'Rebeca', '11938563748', 'rebeca@gmail.com', 'Rua Z', '00000000002'),
+	('fornecedor', 'Best Tecidos', '11918465729', 'best_tecidos@gmail.com', 'Rua 1', '00000000000000'),
+	('fornecedor', 'Fornecedor X', '11918465729', 'fornecedorx@gmail.com', 'Rua 2', '00000000000001'),
+	('fornecedor', 'Fornecedor Z', '11918465729', 'fornecedorys@gmail.com', 'Rua 3', '00000000000002');
 
 CREATE TABLE IF NOT EXISTS `lote` (
   `id_lote` INT PRIMARY KEY AUTO_INCREMENT,
@@ -246,9 +246,9 @@ CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
 
 -- Cadastro dos itens de um lote (lote 1 - roupas).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES -- teste roupa
-	(1, 1, 5, 100.0),
-    (1, 2, 3, 150.0),
-    (1, 3, 10, 200.0);
+	(1, 1, 5.0, 100.0),
+  (1, 2, 3.0, 150.0),
+  (1, 3, 10.0, 200.0);
 -- Cadastro dos itens de um lote (lote 2 - tecido).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
 	(2, 4, 3.5, 80.0),
@@ -256,9 +256,9 @@ INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES
 	(2, 6, 12.5, 120.0);
 -- Cadastro dos itens de um lote (lote 3 - roupas).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
-	(3, 1, 20, 350.0),
-	(3, 2, 26, 1100.0),
-	(3, 3, 18, 300.0);
+	(3, 1, 20.0, 350.0),
+	(3, 2, 26.0, 110.0),
+	(3, 3, 18.0, 300.0);
 -- Cadastro dos itens de um lote (lote 4 - tecido).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
 	(4, 4, 8.9, 200.0),
