@@ -141,12 +141,12 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
 );
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
 INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, peso, qtd_minimo, qtd_armazenado, preco, notificar, fk_imagem) VALUES
-	(9, 1, 'Vestido azul florido', 1.0, 0, 5.0, NULL, true, 1),
-	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 3.0, NULL, false, 2),
-	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 10.0, NULL, true, 3),
-	(5, 4, 'Tecido vermelho liso', 1.0, 0, 3.5, 100.0, false, 4),
-	(6, 5, 'Tecido azul florido', 1.0, 0, 6.5, 150.0, false, 5),
-	(4, 6, 'Tecido cinza liso', 1.0, 0, 12.5, 200.0, true, 6);
+	(9, 1, 'Vestido azul florido', 1.0, 0, 0, 59.9, true, 1),
+	(10, 2, 'Camisa vermelha lisa', 1.0, 0, 0, 34.9, false, 2),
+	(12, 3, 'Bermuda cinza com listras vermelhas', 1.0, 0, 0, 55.9, true, 3),
+	(5, 4, 'Tecido vermelho liso', 1.0, 0, 0, 7.99, false, 4),
+	(6, 5, 'Tecido azul florido', 1.0, 0, 0, 8.99, false, 5),
+	(4, 6, 'Tecido cinza liso', 1.0, 0, 0, 7.50, true, 6);
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
@@ -189,10 +189,10 @@ CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
 );
 -- Relacionar os tecidos que compõem uma peça de roupa.
 INSERT INTO confeccao_roupa (fk_roupa, fk_tecido, qtd_tecido) VALUES
-	(1, 5, 10.0),
-	(2, 4, 10.0),
-	(3, 4, 10.0),
-	(3, 6, 10.0);
+	(1, 5, 3.0),
+	(2, 4, 1.3),
+	(3, 4, 0.7),
+	(3, 6, 0.7);
 
 CREATE TABLE IF NOT EXISTS `parceiro` (
   `id_parceiro` INT PRIMARY KEY AUTO_INCREMENT,
@@ -246,24 +246,14 @@ CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
 
 -- Cadastro dos itens de um lote (lote 1 - roupas).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES -- teste roupa
-	(1, 1, 5.0, 100.0),
-  (1, 2, 3.0, 150.0),
-  (1, 3, 10.0, 200.0);
+	(1, 1, 5, 100.0),
+    (1, 2, 3, 50.0),
+    (1, 3, 10, 250.0);
 -- Cadastro dos itens de um lote (lote 2 - tecido).
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
-	(2, 4, 3.5, 80.0),
-	(2, 5, 6.5, 70.0),
-	(2, 6, 12.5, 120.0);
--- Cadastro dos itens de um lote (lote 3 - roupas).
-INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
-	(3, 1, 20.0, 350.0),
-	(3, 2, 26.0, 110.0),
-	(3, 3, 18.0, 300.0);
--- Cadastro dos itens de um lote (lote 4 - tecido).
-INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES-- teste tecido
-	(4, 4, 8.9, 200.0),
-	(4, 5, 20.8, 200.0),
-	(4, 6, 31.4, 300.0);
+	(2, 4, 3.5, 27.85),
+	(2, 5, 6.5, 58.45),
+	(2, 6, 12.5, 90.0);
 
 
 SELECT * FROM projeto_extensao.categoria;
@@ -350,5 +340,47 @@ SELECT * FROM (
     ) as t WHERE quantidade > 0 
   ORDER BY t.descricao, t.fk_lote;
 
-drop view use projeto_extensao.autocomplete_saida;
+-- drop view projeto_extensao.autocomplete_saida;
 SELECT * FROM autocomplete_saida;
+
+-- SELECT COM EXPLICAÇÃO DOS VALORES
+SELECT lie_roupa.fk_item_estoque, 
+	AVG(lie_roupa.preco / lie_roupa.qtd_item) as custo_costureira,
+	cnf.custo_tecidos,
+	ROUND(AVG(lie_roupa.preco / lie_roupa.qtd_item) + cnf.custo_tecidos, 2) as custo_total,
+	ie.preco,
+	ROUND(((ie.preco - ROUND(AVG(lie_roupa.preco / lie_roupa.qtd_item) + cnf.custo_tecidos, 2)) / ie.preco) * 100, 2) as 'margem_lucro_%',
+	ie.descricao 
+	FROM lote_item_estoque as lie_roupa
+		JOIN item_estoque as ie
+			ON lie_roupa.fk_item_estoque = ie.id_item_estoque
+		JOIN categoria as c
+			ON ie.fk_categoria = c.id_categoria
+		JOIN (SELECT cnf.fk_roupa, SUM(cnf.qtd_tecido * ie.preco) as custo_tecidos FROM confeccao_roupa as cnf JOIN item_estoque as ie ON cnf.fk_tecido = ie.id_item_estoque GROUP BY cnf.fk_roupa) as cnf
+			ON ie.id_item_estoque = cnf.fk_roupa 
+		WHERE c.fk_categoria_pai = 2
+	GROUP BY lie_roupa.fk_item_estoque, ie.descricao, ie.preco;
+
+-- SUBQUERY
+/*
+SELECT cnf.fk_roupa, 
+	SUM(cnf.qtd_tecido * ie.preco) as custo_tecidos 
+		FROM confeccao_roupa as cnf 
+			JOIN item_estoque as ie 
+				ON cnf.fk_tecido = ie.id_item_estoque 
+			GROUP BY cnf.fk_roupa;
+*/
+
+-- SELECT SIMPLIFICADO
+SELECT lie_roupa.fk_item_estoque AS id_roupa, 
+	ie.descricao,
+	ROUND(((ie.preco - ROUND(AVG(lie_roupa.preco / lie_roupa.qtd_item) + cnf.custo_tecidos, 2)) / ie.preco) * 100, 2) as 'margem_lucro_%'
+	FROM lote_item_estoque as lie_roupa
+		JOIN item_estoque as ie
+			ON lie_roupa.fk_item_estoque = ie.id_item_estoque
+		JOIN categoria as c
+			ON ie.fk_categoria = c.id_categoria
+		JOIN (SELECT cnf.fk_roupa, SUM(cnf.qtd_tecido * ie.preco) as custo_tecidos FROM confeccao_roupa as cnf JOIN item_estoque as ie ON cnf.fk_tecido = ie.id_item_estoque GROUP BY cnf.fk_roupa) as cnf
+			ON ie.id_item_estoque = cnf.fk_roupa 
+		WHERE c.fk_categoria_pai = 2
+	GROUP BY lie_roupa.fk_item_estoque, ie.descricao;
