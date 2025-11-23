@@ -25,13 +25,13 @@ CREATE TABLE IF NOT EXISTS `permissao` (
 );
 -- Permissões serão fixas no banco, não será necessário cadastro ou atualização
 INSERT INTO permissao (descricao) VALUES
-	('Visualizar dashboard'),
-	('Cadastrar funcionários'),
-	('Visualizar histórico do estoque'),
-    ('Registrar movimentação do estoque'),
-	('Visualizar dados de itens do estoque'),
-	('Cadastrar itens do estoque'),
-	('Receber alertas de falta de estoque');
+	('VISUALIZAR_DASHBOARD'),
+	('CADASTRAR_FUNCIONARIOS'),
+	('VISUALIZAR_HISTORICO_ESTOQUE'),
+    ('REGISTRAR_MOVIMENTACAO_ESTOQUE'),
+	('VISUALIZAR_DADOS_ITEM_ESTOQUE'),
+	('CADASTRAR_ITEM_ESTOQUE'),
+	('RECEBER_ALERTA_FALTA_ESTOQUE');
 
 CREATE TABLE IF NOT EXISTS `controle_acesso` (
   `fk_funcionario` INT NOT NULL,
