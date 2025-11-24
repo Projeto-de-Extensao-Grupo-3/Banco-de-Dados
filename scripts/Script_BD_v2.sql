@@ -25,13 +25,13 @@ CREATE TABLE IF NOT EXISTS `permissao` (
 );
 -- Permissões serão fixas no banco, não será necessário cadastro ou atualização
 INSERT INTO permissao (descricao) VALUES
-	('VISUALIZAR_DASHBOARD'),
-	('CADASTRAR_FUNCIONARIOS'),
-	('VISUALIZAR_HISTORICO_ESTOQUE'),
-    ('REGISTRAR_MOVIMENTACAO_ESTOQUE'),
-	('VISUALIZAR_DADOS_ITEM_ESTOQUE'),
-	('CADASTRAR_ITEM_ESTOQUE'),
-	('RECEBER_ALERTA_FALTA_ESTOQUE');
+	('VISUALIZAR DASHBOARD'),
+	('CADASTRAR FUNCIONARIOS'),
+	('VISUALIZAR HISTORICO ESTOQUE'),
+    ('REGISTRAR MOVIMENTACAO DE ESTOQUE'),
+	('VISUALIZAR DADOS DE ITEM ESTOQUE'),
+	('CADASTRAR ITEM ESTOQUE'),
+	('RECEBER ALERTAS DE FALTA ESTOQUE');
 
 CREATE TABLE IF NOT EXISTS `controle_acesso` (
   `fk_funcionario` INT NOT NULL,
@@ -371,6 +371,9 @@ SELECT cnf.fk_roupa,
 			GROUP BY cnf.fk_roupa;
 */
 
+select * from permissao;
+select * from controle_acesso;
+select * from funcionario;
 -- SELECT SIMPLIFICADO
 SELECT lie_roupa.fk_item_estoque AS id_roupa, 
 	ie.descricao,
