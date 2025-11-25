@@ -341,7 +341,7 @@ SELECT * FROM (
   ORDER BY t.descricao, t.fk_lote;
 
 -- drop view projeto_extensao.autocomplete_saida;
-SELECT * FROM autocomplete_saida;
+SELECT * FROM confeccao_roupa;
 
 -- SELECT COM EXPLICAÇÃO DOS VALORES
 SELECT lie_roupa.fk_item_estoque, 
