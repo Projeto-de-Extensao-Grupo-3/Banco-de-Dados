@@ -25,11 +25,9 @@ CREATE TABLE IF NOT EXISTS `permissao` (
 );
 -- Permissões serão fixas no banco, não será necessário cadastro ou atualização
 INSERT INTO permissao (descricao) VALUES
+	('EDITAR ESTOQUE'),
 	('VISUALIZAR DASHBOARD'),
-	('CADASTRAR FUNCIONARIOS'),
-	('VISUALIZAR HISTORICO ESTOQUE'),
-    ('REGISTRAR MOVIMENTACAO DE ESTOQUE'),
-	('VISUALIZAR DADOS DE ITEM ESTOQUE'),
+	('EDITAR FUNCIONARIOS'),
 	('CADASTRAR ITEM ESTOQUE'),
 	('RECEBER ALERTAS DE FALTA ESTOQUE');
 
@@ -48,6 +46,8 @@ INSERT INTO controle_acesso (fk_funcionario, fk_permissao) VALUES
     (2, 1),
 	(2, 2),
 	(2, 3),
+	(2, 4),
+	(2, 5),
     (3, 1),
 	(3, 2),
 	(3, 3),
@@ -370,6 +370,7 @@ SELECT cnf.fk_roupa,
 				ON cnf.fk_tecido = ie.id_item_estoque 
 			GROUP BY cnf.fk_roupa;
 */
+use projeto_extensao;
 
 select * from permissao;
 select * from controle_acesso;
@@ -387,3 +388,5 @@ SELECT lie_roupa.fk_item_estoque AS id_roupa,
 			ON ie.id_item_estoque = cnf.fk_roupa 
 		WHERE c.fk_categoria_pai = 2
 	GROUP BY lie_roupa.fk_item_estoque, ie.descricao;
+    
+    select * from permissao;
