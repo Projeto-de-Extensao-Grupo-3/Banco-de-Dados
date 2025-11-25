@@ -12,11 +12,13 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 );
 -- Cadastro de funcionários.
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
-	('Fanuel Felix', '000.000.000-00', '55 (11)93003-2475', 'fanu@gmail.com', '123456@'),
-	('Clebson Cabral', '111.111.111-11', '55 (11)93003-2475', 'clebson@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
-	('Aelio Junior Duarte', '222.222.222-22', '55 (11)93003-2475', 'junior@gmail.com', '123456@'),
-	('Tiago Cartaxo', '333.333.333-33', '55 (11)93003-2475', 'tiago@gmail.com', '123456@'),
-	('Douglas Mario', '444.444.444-44', '55 (11)93003-2475', 'douglas@gmail.com', '123456@');
+	('Fanuel Felix', '00000000000', '5511930032478', 'fanu@gmail.com', '123456@'),
+	('Clebson Cabral', '11111111111', '5511930032475', 'clebson@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
+	('Aelio Junior Duarte', '22222222222', '5511930032488', 'junior@gmail.com', '123456@'),
+	('Tiago Cartaxo', '33333333333', '5511930032499', 'tiago@gmail.com', '123456@'),
+	('Douglas Mario', '44444444444', '5511930032477', 'douglas@gmail.com', '123456@');
+    
+    select * from funcionario;
 
 CREATE TABLE IF NOT EXISTS `permissao` (
   `id_permissao` INT PRIMARY KEY AUTO_INCREMENT,
@@ -173,38 +175,40 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
 INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, complemento, peso, qtd_minimo, qtd_armazenado, preco, notificar)
 VALUES
 -- ROUPAS (usando prateleiras 1-10 para roupas, IDs 1-10)
-(9, 1, 'Vestido Manga Curta', 'Canelado Premium / Viscose / P, M & G', 0.35, 5, 3, 35.00, true),
-(10, 2, 'Vestido Canelado Mídi', 'Canelado / Viscose / P, M & G', 0.35, 5, 2, 35.00, true),
-(11, 3, 'Vestido Regata Estampado', 'Regata / Viscolycra / P, M & G', 0.35, 5, 4, 25.00, true),
-(12, 4, 'Vestido Plus', 'Estampado / Viscolycra / Plus', 0.45, 5, 10, 35.00, false),
-(13, 5, 'Blusa Gola Boba', 'Gola Boba / Suplex / P, M & G', 0.25, 5, 6, 20.00, false),
-(14, 6, 'Blusa Regata Marrocos', 'Regata / Suplex / P, M & G', 0.25, 5, 8, 20.00, false),
-(15, 7, 'Blusa Gola Quadrada Canelada', 'Manga Longa / Gola Quadrada / Viscolycra / U & Plus', 0.30, 5, 4, 22.00, true),
-(16, 8, 'Blusa Gola V Canelada', 'Manga Longa / Gola V / Viscolycra / U & Plus', 0.30, 5, 3, 22.00, true),
-(17, 9, 'Blusa De Ponta', 'Viscolycra / 40 ao 50', 0.30, 5, 6, 22.00, false),
-(18, 10, 'Blusa Meia Manga', 'Gola Quadrada Canelada / Tamanho Único', 0.25, 5, 4, 20.00, true),
-(19, 1, 'Blusa Mulet', 'Mulet / Viscolycra / 38 ao 48', 0.25, 5, 2, 27.00, true),
-(20, 2, 'Blusa Paris', 'Regata / Suplex Premium / P, M & G', 0.25, 5, 6, 20.00, false),
+(9, 1, 'Vestido Manga Curta', 'Canelado Premium / Viscose / P, M & G', 0.35, 5, 21, 35.00, false),
+(10, 2, 'Vestido Canelado Mídi', 'Canelado / Viscose / P, M & G', 0.35, 5, 26, 35.00, false),
+(11, 3, 'Vestido Regata Estampado', 'Regata / Viscolycra / P, M & G', 0.35, 5, 47, 25.00, false),
+(12, 4, 'Vestido Plus', 'Estampado / Viscolycra / Plus', 0.45, 5, 42, 35.00, false),
+(13, 5, 'Blusa Gola Boba', 'Gola Boba / Suplex / P, M & G', 0.25, 5, 35, 20.00, false),
+(14, 6, 'Blusa Regata Marrocos', 'Regata / Suplex / P, M & G', 0.25, 5, 34, 20.00, false),
+(15, 7, 'Blusa Gola Quadrada Canelada', 'Manga Longa / Gola Quadrada / Viscolycra / U & Plus', 0.30, 5, 28, 22.00, false),
+(16, 8, 'Blusa Gola V Canelada', 'Manga Longa / Gola V / Viscolycra / U & Plus', 0.30, 5, 47, 22.00, false),
+(17, 9, 'Blusa De Ponta', 'Viscolycra / 40 ao 50', 0.30, 5, 50, 22.00, false),
+(18, 10, 'Blusa Meia Manga', 'Gola Quadrada Canelada / Tamanho Único', 0.25, 5, 46, 20.00, false),
+(19, 1, 'Blusa Mulet', 'Mulet / Viscolycra / 38 ao 48', 0.25, 5, 44, 27.00, false),
+(20, 2, 'Blusa Paris', 'Regata / Suplex Premium / P, M & G', 0.25, 5, 42, 20.00, false),
 (21, 3, 'Calça De Montaria Com Bolso', 'Montaria / Gorgurão / P, M, G & GG', 0.40, 5, 9, 30.00, false),
-(22, 4, 'Calça Flare', 'Peluciada / Suplex / P, M & G', 0.40, 5, 4, 35.00, true),
-(23, 5, 'Calça Jogger', 'Moletinho / Moletinho Viscose', 0.40, 5, 3, 35.00, true),
-(24, 6, 'Conjunto Saia', 'Conjunto / Viscolycra / 38 ao 48', 0.60, 5, 8, 49.00, false),
-(25, 7, 'Conjunto Gabi', 'Com Touca / Moletinho / P, M & G', 0.60, 5, 10, 75.00, false),
-(26, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 0.60, 5, 6, 75.00, false),
-(27, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 0.30, 5, 3, 25.00, true),
-(28, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 0.30, 5, 7, 25.00, false),
-(29, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 0.50, 5, 4, 49.00, true),
-(30, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 0.50, 5, 9, 47.00, false),
+(22, 4, 'Calça Flare', 'Peluciada / Suplex / P, M & G', 0.40, 5, 33, 35.00, false),
+(23, 5, 'Calça Jogger', 'Moletinho / Moletinho Viscose', 0.40, 5, 50, 35.00, false),
+(24, 6, 'Conjunto Saia', 'Conjunto / Viscolycra / 38 ao 48', 0.60, 5, 35, 49.00, false),
+(25, 7, 'Conjunto Gabi', 'Com Touca / Moletinho / P, M & G', 0.60, 5, 45, 75.00, false),
+(26, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 0.60, 5, 50, 75.00, false),
+(27, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 0.30, 5, 34, 25.00, false),
+(28, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 0.30, 5, 42, 25.00, false),
+(29, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 0.50, 5, 33, 49.00, false),
+(30, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 0.50, 5, 46, 47.00, false),
 
 -- TECIDOS (usando prateleiras 11-18, IDs 11-18 = códigos '1T' a '8T')
-(1, 11, 'Tecido Nylon', 'Rolo 50m', 1.00, 5, 4, 80.00, false),
-(2, 12, 'Tecido Poliéster', 'Rolo 50m', 1.00, 5, 10, 70.00, false),
-(3, 13, 'Tecido Algodão', 'Rolo 50m', 1.00, 5, 3, 90.00, false),
-(4, 14, 'Tecido Lã', 'Rolo 50m', 1.00, 5, 9, 120.00, false),
-(5, 15, 'Tecido Moletinho', 'Rolo 50m', 1.00, 5, 6, 100.00, false),
-(6, 16, 'Tecido Gorgurão', 'Rolo 50m', 1.00, 5, 4, 90.00, false),
-(7, 17, 'Tecido Viscolycra', 'Rolo 50m', 1.00, 5, 3, 110.00, false),
-(8, 18, 'Tecido Suplex', 'Rolo 50m', 1.00, 5, 8, 95.00, false);
+(1, 11, 'Tecido Nylon', 'Rolo 50m', 1.00, 5, 200, 80.00, false),
+(2, 12, 'Tecido Poliéster', 'Rolo 50m', 1.00, 5, 200, 70.00, false),
+(3, 13, 'Tecido Algodão', 'Rolo 50m', 1.00, 5, 200, 90.00, false),
+(4, 14, 'Tecido Lã', 'Rolo 50m', 1.00, 5, 200, 120.00, false),
+(5, 15, 'Tecido Moletinho', 'Rolo 50m', 1.00, 5, 250, 100.00, false),
+(6, 16, 'Tecido Gorgurão', 'Rolo 50m', 1.00, 5, 202, 90.00, false),
+(7, 17, 'Tecido Viscolycra', 'Rolo 50m', 1.00, 5, 200, 110.00, false),
+(8, 18, 'Tecido Suplex', 'Rolo 50m', 1.00, 5, 190, 95.00, false);
+
+select * from item_estoque;
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
@@ -264,30 +268,32 @@ CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   FOREIGN KEY (`fk_roupa`) REFERENCES `item_estoque` (`id_item_estoque`),
   FOREIGN KEY (`fk_tecido`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
--- Relacionar os tecidos que compõem uma peça de roupa.
+
+-- CONFECCAO_ROUPA CORRIGIDO
+-- Agora fk_tecido aponta para os IDs corretos de tecidos (23-30)
 INSERT INTO confeccao_roupa (fk_roupa, fk_tecido, qtd_tecido) VALUES
-(1, 7, 8.0),   -- Vestido Manga Curta → Viscolycra
-(2, 8, 7.5),   -- Vestido Canelado Mídi → Suplex
-(3, 7, 7.0),   -- Vestido Regata Estampado → Viscolycra
-(4, 7, 9.0),   -- Vestido Plus → Viscolycra
-(5, 8, 3.0),   -- Blusa Gola Boba → Suplex
-(6, 8, 3.0),   -- Blusa Regata Marrocos → Suplex
-(7, 7, 3.5),   -- Blusa Gola Quadrada → Viscolycra
-(8, 7, 3.5),   -- Blusa Gola V → Viscolycra
-(9, 7, 3.5),   -- Blusa De Ponta → Viscolycra
-(10, 7, 3.5),  -- Blusa Meia Manga → Viscolycra
-(11, 7, 3.5),  -- Blusa Mulet → Viscolycra
-(12, 8, 3.5),  -- Blusa Paris → Suplex
-(13, 6, 5.0),  -- Calça Montaria → Gorgurão
-(14, 8, 5.0),  -- Calça Flare → Suplex
-(15, 5, 5.0),  -- Calça Jogger → Moletinho
-(16, 7, 6.0),  -- Conjunto Saia → Viscolycra
-(17, 5, 7.0),  -- Conjunto Gabi → Moletinho
-(18, 5, 7.0),  -- Conjunto Pantalona → Moletinho
-(19, 5, 4.0),  -- Shorts Moletinho → Moletinho
-(20, 5, 4.0),  -- Camisa Over → Moletinho
-(21, 7, 8.0),  -- Macacão Lívia (Estampado) → Viscolycra
-(22, 7, 8.0);  -- Macacão Lívia (Sem estampa) → Viscolycra
+(1, 29, 2.0),   -- Vestido Manga Curta → Viscolycra (id=29)
+(2, 30, 2.0),   -- Vestido Canelado Mídi → Suplex (id=30)
+(3, 29, 2.0),   -- Vestido Regata Estampado → Viscolycra (id=29)
+(4, 29, 2.0),   -- Vestido Plus → Viscolycra (id=29)
+(5, 30, 2.0),   -- Blusa Gola Boba → Suplex (id=30)
+(6, 30, 2.0),   -- Blusa Regata Marrocos → Suplex (id=30)
+(7, 29, 2.0),   -- Blusa Gola Quadrada → Viscolycra (id=29)
+(8, 29, 2.0),   -- Blusa Gola V → Viscolycra (id=29)
+(9, 29, 2.0),   -- Blusa De Ponta → Viscolycra (id=29)
+(10, 29, 2.0),  -- Blusa Meia Manga → Viscolycra (id=29)
+(11, 29, 2.0),  -- Blusa Mulet → Viscolycra (id=29)
+(12, 30, 2.0),  -- Blusa Paris → Suplex (id=30)
+(13, 28, 2.0),  -- Calça Montaria → Gorgurão (id=28)
+(14, 30, 2.0),  -- Calça Flare → Suplex (id=30)
+(15, 27, 2.0),  -- Calça Jogger → Moletinho (id=27)
+(16, 29, 2.0),  -- Conjunto Saia → Viscolycra (id=29)
+(17, 27, 2.0),  -- Conjunto Gabi → Moletinho (id=27)
+(18, 27, 2.0),  -- Conjunto Pantalona → Moletinho (id=27)
+(19, 27, 2.0),  -- Shorts Moletinho → Moletinho (id=27)
+(20, 27, 2.0),  -- Camisa Over → Moletinho (id=27)
+(21, 29, 2.0),  -- Macacão Lívia (Estampado) → Viscolycra (id=29)
+(22, 29, 2.0);  -- Macacão Lívia (Sem estampa) → Viscolycra (id=29)
 
 CREATE TABLE IF NOT EXISTS `parceiro` (
   `id_parceiro` INT PRIMARY KEY AUTO_INCREMENT,
@@ -300,13 +306,13 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
 );
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
 INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao) VAlUES 
-	('oficina', 'Andresa', '11938563748', 'andresa@gmail.com', 'Rua Aurora, número 72', '000.000.000-00'),
-	('oficina', 'Maria', '11938563748', 'maria@gmail.com', 'Rua Y, número 171', '000.000.000-01'),
-	('oficina', 'Rute', '11938563748', 'rebeca@gmail.com', 'Rua Tal, número 442', '000.000.000-02'),
-	('oficina', 'Sueli', '11938563748', 'rebeca@gmail.com', 'Rua Z, núemro 777', '000.000.000-02'),
-	('oficina', 'Vera', '11938563748', 'rebeca@gmail.com', 'Rua Um, número 2', '000.000.000-02'),
-	('oficina', 'Gildete', '11938563748', 'rebeca@gmail.com', 'Rua Dois, número 1', '000.000.000-02'),
-	('fornecedor', 'Fornecedor Brás', '11918465729', 'fornecedorbrass@gmail.com', 'Rua Brás, número 1255', '00.000.000/0000-00');
+	('oficina', 'Andresa', '11938563748', 'andresa@gmail.com', 'Rua Aurora, número 72', '00000000000'),
+	('oficina', 'Maria', '11938563748', 'maria@gmail.com', 'Rua Y, número 171', '00000000001'),
+	('oficina', 'Rute', '11938563748', 'rebeca@gmail.com', 'Rua Tal, número 442', '00000000002'),
+	('oficina', 'Sueli', '11938563748', 'rebeca@gmail.com', 'Rua Z, núemro 777', '00000000002'),
+	('oficina', 'Vera', '11938563748', 'rebeca@gmail.com', 'Rua Um, número 2', '00000000002'),
+	('oficina', 'Gildete', '11938563748', 'rebeca@gmail.com', 'Rua Dois, número 1', '00000000002'),
+	('fornecedor', 'Fornecedor Brás', '11918465729', 'fornecedorbrass@gmail.com', 'Rua Brás, número 1255', '00000000000000');
 
 CREATE TABLE IF NOT EXISTS `lote` (
   `id_lote` INT PRIMARY KEY AUTO_INCREMENT,
@@ -359,17 +365,16 @@ INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES
 (1, 21, 50, 7.50),  -- Macacão Lívia Estampado - costura
 (1, 22, 50, 7.50);  -- Macacão Lívia Sem Estampa - costura
 
--- Tecidos (lote 2) - PREÇO POR METRO (rolo tem 50m)
+-- Tecidos (lote 2) - Preço total calculado (qtd_item * preço_por_metro)
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES
-(2, 23, 100, 1.60),  -- Nylon - R$1.60/metro
-(2, 24, 100, 1.40),  -- Poliéster - R$1.40/metro
-(2, 25, 100, 1.80),  -- Algodão - R$1.80/metro
-(2, 26, 100, 2.40),  -- Lã - R$2.40/metro
-(2, 27, 100, 2.00),  -- Moletinho - R$2.00/metro
-(2, 28, 100, 1.80),  -- Gorgurão - R$1.80/metro
-(2, 29, 100, 2.20),  -- Viscolycra - R$2.20/metro
-(2, 30, 100, 1.90);  -- Suplex - R$1.90/metro
-
+(2, 23, 200, 320.00),  -- Nylon: m * R$1.60/m
+(2, 24, 200, 280.00),  -- Poliéster: m * R$1.40/m
+(2, 25, 200, 360.00),  -- Algodão: m * R$1.80/m
+(2, 26, 200, 480.00),  -- Lã: m * R$2.40/m
+(2, 27, 260, 520.00),  -- Moletinho: m * R$2.00/m
+(2, 28, 210, 380.00),  -- Gorgurão: m * R$1.80/m
+(2, 29, 210, 462.00),  -- Viscolycra: m * R$2.20/m
+(2, 30, 200, 380.00);  -- Suplex: m * R$1.90/m
 
 CREATE TABLE IF NOT EXISTS `saida_estoque` (
   `id_saida_estoque` INT PRIMARY KEY AUTO_INCREMENT,
