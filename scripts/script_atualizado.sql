@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Fanuel Felix', '00000000000', '11930032478', 'fanu@gmail.com', '123456@'),
 	('Clebson Cabral', '11111111111', '11930032475', 'clebson@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
+	('Fernando Almeida', '00000000000', '11991991199', 'fernando_almeida@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
 	('Aelio Junior Duarte', '22222222222', '11930032488', 'junior@gmail.com', '123456@'),
 	('Tiago Cartaxo', '33333333333', '11930032499', 'tiago@gmail.com', '123456@'),
 	('Douglas Mario', '44444444444', '11930032477', 'douglas@gmail.com', '123456@');
@@ -26,13 +27,11 @@ CREATE TABLE IF NOT EXISTS `permissao` (
 );
 -- Permissões serão fixas no banco, não será necessário cadastro ou atualização
 INSERT INTO permissao (descricao) VALUES
-	('Visualizar dashboard'),
-	('Cadastrar funcionários'),
-	('Visualizar histórico do estoque'),
-    ('Registrar movimentação do estoque'),
-	('Visualizar dados de itens do estoque'),
-	('Cadastrar itens do estoque'),
-	('Receber alertas de falta de estoque');
+	('EDITAR ESTOQUE'),
+	('VISUALIZAR DASHBOARD'),
+	('EDITAR FUNCIONARIOS'),
+	('CADASTRAR ITEM ESTOQUE'),
+	('RECEBER ALERTAS DE FALTA ESTOQUE');
 
 CREATE TABLE IF NOT EXISTS `controle_acesso` (
   `fk_funcionario` INT NOT NULL,
@@ -553,7 +552,43 @@ SELECT * FROM (
       WHERE lie.id_lote_item_estoque NOT IN (SELECT se.fk_lote_item_estoque FROM saida_estoque as se)
     ) as t WHERE quantidade > 0 
   ORDER BY t.descricao, t.fk_lote;
-  
+
+CREATE VIEW autocomplete_saida AS
+SELECT * FROM (
+  SELECT lie.fk_lote, 
+  lie.fk_item_estoque, 
+  ie.descricao, (lie.qtd_item - (sum(se.qtd_saida))) as quantidade,
+  ie.preco,
+  lie.id_lote_item_estoque,
+  c.fk_categoria_pai
+    FROM lote_item_estoque as lie 
+      JOIN saida_estoque as se
+        ON lie.id_lote_item_estoque = se.fk_lote_item_estoque
+      JOIN item_estoque as ie
+        ON ie.id_item_estoque = lie.fk_item_estoque
+	  JOIN categoria as c
+	  	ON ie.fk_categoria = c.id_categoria
+      GROUP BY lie.fk_item_estoque, se.fk_lote_item_estoque, lie.fk_lote, lie.id_lote_item_estoque
+        UNION
+  SELECT lie.fk_lote,  
+  lie.fk_item_estoque, 
+  ie.descricao, 
+  qtd_item as quantidade,
+  ie.preco,
+  lie.id_lote_item_estoque,
+  c.fk_categoria_pai
+    FROM lote_item_estoque as lie
+      JOIN item_estoque as ie
+        ON ie.id_item_estoque = lie.fk_item_estoque
+	  JOIN categoria AS c
+	  	ON ie.fk_categoria = c.id_categoria
+      WHERE lie.id_lote_item_estoque NOT IN (SELECT se.fk_lote_item_estoque FROM saida_estoque as se)
+    ) as t WHERE quantidade > 0 
+  ORDER BY t.descricao, t.fk_lote;
+
+select * from autocomplete_saida;
+
+select * from lote;
   
   -- SELECTS PARA O GRAFANA --
 -- ============================================
