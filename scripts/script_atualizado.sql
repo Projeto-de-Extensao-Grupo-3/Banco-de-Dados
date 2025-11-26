@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
 -- Cadastro de funcionários.
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Fanuel Felix', '00000000000', '11930032478', 'fanu@gmail.com', '123456@'),
-	('Clebson Cabral', '11111111111', '11930032475', 'clebson@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
 	('Fernando Almeida', '00000000000', '11991991199', 'fernando_almeida@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
+	('Clebson Cabral', '11111111111', '11930032475', 'clebson@gmail.com', '$2a$10$dgIbkIFfWfyacCgi5TdD0OMYxDemXhgRIryEOMDWwyGzS9/RSAwPa'),
 	('Aelio Junior Duarte', '22222222222', '11930032488', 'junior@gmail.com', '123456@'),
 	('Tiago Cartaxo', '33333333333', '11930032499', 'tiago@gmail.com', '123456@'),
 	('Douglas Mario', '44444444444', '11930032477', 'douglas@gmail.com', '123456@');
