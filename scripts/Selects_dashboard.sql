@@ -10,17 +10,17 @@ use projeto_extensao;use projeto_extensao;
 /* =============================================================================================================================================
  *  Select A: Margem de lucro dos produtos
  * =============================================================================================================================================
- *  endpoint atual: /lotes-item-estoque/margem-lucro-produtos
- *  corpo atual: sem corpo
+ *  endpoint: /lotes-item-estoque/margem-lucro-produtos
  * =============================================================================================================================================
- *  Novo endpoint: mesmo endpoint
- *  Novo corpo: {
- *	 String dataInicio: "2025-04-01", -- Se ficar melhor uma classe de data pode usar
- *	 String dataFim: "2025-10-30", -- Se ficar melhor uma classe de data pode usar
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Novidades
+ * 
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String dataInicio, -- Se ficar melhor uma classe de data pode usar
+ *	 String dataFim, -- Se ficar melhor uma classe de data pode usar
+ *	 String caracteristica, -- String da caracteristica
+ *	 String categoria, -- String da categoria
  *  }
- *  Novos campos: nao
+ *  Novos campos retorno: nao
  * ============================================================================================================================================= 
  *	SELECT NOVO - validar nome argumentos
  *============================================================================================================================================= 
@@ -54,17 +54,17 @@ SELECT lie_roupa.fk_item_estoque AS id_roupa,
 /* =============================================================================================================================================
  *  Select B: Margem de lucro dos produtos
  * =============================================================================================================================================
- *  endpoint atual: /lotes-item-estoque/peca-maior-mao-obra
- *  corpo atual: sem corpo
+ *  endpoint: /lotes-item-estoque/peca-maior-mao-obra
  * =============================================================================================================================================
- *  Novo endpoint: mesmo
- *  Novo corpo: {
- *	 String dataInicio: "2025-04-01", -- Se ficar melhor uma classe de data pode usar
- *	 String dataFim: "2025-10-30", -- Se ficar melhor uma classe de data pode usar
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Novidades
+ * 
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String dataInicio, -- Se ficar melhor uma classe de data pode usar
+ *	 String dataFim, -- Se ficar melhor uma classe de data pode usar
+ *	 String caracteristica, -- String da caracteristica
+ *	 String categoria, -- String da categoria
  *  }
- * Novos campos: nao
+ * Novos campos retorno: nao
  * ============================================================================================================================================= 
  *	SELECT NOVO - inserir respectivas variáveis nos nomes, no "WHERE". Apenas substituir valor dentro dos colchetes (e os colchetes)
  *============================================================================================================================================= 
@@ -103,15 +103,15 @@ SELECT lie_roupa.fk_item_estoque,
 /* =============================================================================================================================================
  *  Select C: Produtos Giro Baixo
  * =============================================================================================================================================
- *  endpoint atual: /itens-estoque/produtos-giro-baixo
- *  corpo atual: sem corpo	
+ *  endpoint: /itens-estoque/produtos-giro-baixo
  * =============================================================================================================================================
- *  Novo endpoint: mesmo
- *  Novo corpo: {
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Novidades
+ * 
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String caracteristica, -- String da caracteristica
+ *	 String categoria, -- String da categoria
  *  }
- * Novos campos: nao
+ * Novos campos retorno: nao
  * ============================================================================================================================================= 
  *	SELECT NOVO - inserir respectivas variáveis nos nomes, no "WHERE". Apenas substituir valor dentro dos colchetes (e os colchetes)
  *============================================================================================================================================= 
@@ -153,17 +153,17 @@ LIMIT 5;
 /* =============================================================================================================================================
  *  Select D: Defeitos por roupa
  * =============================================================================================================================================
- *  endpoint atual: /itens-estoque/defeitos-por-roupa
- *  corpo atual: sem corpo	
+ *  endpoint: /itens-estoque/defeitos-por-roupa
  * =============================================================================================================================================
- *  Novo endpoint: mesmo
- *  Novo corpo: {
- *	 String dataInicio: "2025-04-01", -- Se ficar melhor uma classe de data pode usar
- *	 String dataFim: "2025-10-30", -- Se ficar melhor uma classe de data pode usar
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Novidades
+ * 
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String dataInicio, -- Se ficar melhor uma classe de data pode usar
+ *	 String dataFim, -- Se ficar melhor uma classe de data pode usar
+ *	 String caracteristica, -- String da caracteristica
+ *	 String categoria, -- String da categoria
  *  }
- * Novos campos: nao
+ * Novos campos retorno: nao
  * ============================================================================================================================================= 
  *	SELECT NOVO - inserir respectivas variáveis nos nomes, no "WHERE". Apenas substituir valor dentro dos colchetes (e os colchetes)
  *============================================================================================================================================= 
@@ -198,17 +198,15 @@ ORDER BY taxa_defeito_percentual DESC;
 /* =============================================================================================================================================
  *  Select E: Defeitos por costureira
  * =============================================================================================================================================
- *  endpoint atual: /saidas-estoque/taxa-defeito-costura
- *  corpo atual: sem corpo	
+ *  endpoint: /saidas-estoque/taxa-defeito-costura
  * =============================================================================================================================================
- *  Novo endpoint: mesmo
- *  Novo corpo: {
- *	 String dataInicio: "2025-04-01", -- Se ficar melhor uma classe de data pode usar
- *	 String dataFim: "2025-10-30", -- Se ficar melhor uma classe de data pode usar
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Novidades
+ * 
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String dataInicio, -- Se ficar melhor uma classe de data pode usar
+ *	 String dataFim, -- Se ficar melhor uma classe de data pode usar
  *  }
- * Novos campos: nao
+ * Novos campos retorno: nao
  * ============================================================================================================================================= 
  *	SELECT NOVO - inserir respectivas variáveis nos nomes, no "WHERE". Apenas substituir valor dentro dos colchetes (e os colchetes)
  *============================================================================================================================================= 
@@ -236,21 +234,19 @@ ORDER BY taxa_defeito_percentual DESC;
 /* =============================================================================================================================================
  *  Select F: Rendimento mensal
  * =============================================================================================================================================
- *  endpoint atual: /itens-estoque/evolucao-vendas
- *  corpo atual: sem corpo	
+ *  endpoint: /itens-estoque/evolucao-vendas
  * =============================================================================================================================================
- *  Novo endpoint: mesmo
+ *  Novidades
  * 
  *  ATENCAO!!! APENAS ANO E MES AQUI, DIFERENTE DAS OUTRAS!!!
- * 
- *  Novo corpo: {
- *	 String dataInicio: "2025-04", -- Se ficar melhor uma classe de data pode usar
- *	 String dataFim: "2025-10", -- Se ficar melhor uma classe de data pode usar
- *	 String caracteristica: "nome_caracteristica", -- String da caracteristica
- *	 String categoria: "nome_categoria", -- String da categoria
+ *  Parametros - obtidos pelo @RequestParam {
+ *	 String dataInicio, -- Se ficar melhor uma classe de data pode usar
+ *	 String dataFim, -- Se ficar melhor uma classe de data pode usar
+ *	 String caracteristica, -- String da caracteristica
+ *	 String categoria, -- String da categoria
  *  }
- * Novos campos: Existe alteracao de campos se ainda nao foi atualizado para o novo de faturamento. Caso contrario, nao.
- * 				 Os campos devem ser periodo, faturamento_bruto e lucro. Se custos ja foi feito, pode manter, mas nao e necessario adicionar
+ * Novos campos retorno: Existe alteracao de campos se ainda nao foi atualizado para o novo de faturamento. Caso contrario, nao.
+ * 				 		Os campos devem ser periodo, faturamento_bruto e lucro. Se custos ja foi feito, pode manter, mas nao e necessario adicionar
  * ============================================================================================================================================= 
  *	SELECT NOVO - inserir respectivas variáveis nos nomes, no "WHERE". Apenas substituir valor dentro dos colchetes (e os colchetes)
  *============================================================================================================================================= 
