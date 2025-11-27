@@ -42,9 +42,9 @@ SELECT lie_roupa.fk_item_estoque AS id_roupa,
 			ON ie.id_item_estoque = carac_ie.fk_item_estoque
 		LEFT JOIN categoria as carac						
 			ON carac_ie.fk_categoria  = carac.id_categoria
-	WHERE IFNULL(carac.nome, '') LIKE "%:caracteristica%"
-		AND c.nome LIKE "%:categoria%"
-		AND l.dt_entrada BETWEEN ":dataInicio" AND ":dataFim"
+	WHERE IFNULL(carac.nome, '') LIKE %:caracteristica%
+		AND c.nome LIKE %:categoria%
+		AND l.dt_entrada BETWEEN :dataInicio AND :dataFim
 	GROUP BY lie_roupa.fk_item_estoque, ie.descricao;
 
 
@@ -90,9 +90,9 @@ SELECT lie_roupa.fk_item_estoque,
 			ON ie.id_item_estoque = carac_ie.fk_item_estoque
 		LEFT JOIN categoria as carac						
 			ON carac_ie.fk_categoria  = carac.id_categoria
-	WHERE IFNULL(carac.nome, '') LIKE "%:caracteristica%"
-		AND c.nome LIKE "%:categoria%"
-		AND l.dt_entrada BETWEEN ":dataInicio" AND ":dataFim"
+	WHERE IFNULL(carac.nome, '') LIKE %:caracteristica%
+		AND c.nome LIKE %:categoria%
+		AND l.dt_entrada BETWEEN :dataInicio AND :dataFim
 	GROUP BY lie_roupa.fk_item_estoque, ie.descricao, ie.preco;
 
 
@@ -139,8 +139,8 @@ LEFT JOIN saida_estoque AS se ON lie.id_lote_item_estoque = se.fk_lote_item_esto
 			ON ie.id_item_estoque = carac_ie.fk_item_estoque
 		LEFT JOIN categoria as carac						
 			ON carac_ie.fk_categoria  = carac.id_categoria
-	WHERE IFNULL(carac.nome, '') LIKE "%:caracteristica%"
-		AND c.nome LIKE "%:categoria%"
+	WHERE IFNULL(carac.nome, '') LIKE %:caracteristica%
+		AND c.nome LIKE %:categoria%
 		AND carac.fk_categoria_pai = 2
 GROUP BY ie.id_item_estoque, ie.descricao, ie.qtd_armazenado
 ORDER BY total_vendido ASC, dias_sem_vender DESC
@@ -184,9 +184,9 @@ JOIN categoria as c ON ie.fk_categoria = c.id_categoria
 JOIN lote as l ON lie.fk_lote = l.id_lote 
 LEFT JOIN caracteristica_item_estoque as carac_ie ON ie.id_item_estoque = carac_ie.fk_item_estoque
 LEFT JOIN categoria as carac ON carac_ie.fk_categoria  = carac.id_categoria
-WHERE IFNULL(carac.nome, '') LIKE "%:caracteristica%"
-	AND c.nome LIKE "%:categoria%"
-	AND l.dt_entrada BETWEEN ":dataInicio" AND ":dataFim"
+WHERE IFNULL(carac.nome, '') LIKE %:caracteristica%
+	AND c.nome LIKE %:categoria%
+	AND l.dt_entrada BETWEEN :dataInicio AND :dataFim
 GROUP BY ie.descricao
 HAVING qtd_defeitos > 0
 ORDER BY taxa_defeito_percentual DESC;
@@ -222,7 +222,7 @@ SELECT
     ) AS taxa_defeito_percentual
 FROM saida_estoque AS se
 LEFT JOIN parceiro AS p ON se.fk_costureira = p.id_parceiro
-WHERE se.data BETWEEN ":dataInicio" AND ":dataFim"
+WHERE se.data BETWEEN :dataInicio AND :dataFim
 AND se.fk_costureira IS NOT NULL
 GROUP BY p.nome
 ORDER BY taxa_defeito_percentual DESC;
@@ -289,10 +289,10 @@ SELECT DATE_FORMAT(vendas.data, '%Y-%m') as periodo,
 			ON ie.id_item_estoque = carac_ie.fk_item_estoque
 		LEFT JOIN categoria as carac						
 			ON carac_ie.fk_categoria  = carac.id_categoria
-	WHERE IFNULL(carac.nome, '') LIKE "%:caracteristica%"
-		AND c.nome LIKE "%:categoria%"
+	WHERE IFNULL(carac.nome, '') LIKE %:caracteristica%
+		AND c.nome LIKE %:categoria%
 		AND vendas.fk_costureira IS NULL
-		AND DATE_FORMAT(vendas.data, '%Y-%m') BETWEEN ":dataInicio" AND ":dataFim"
+		AND DATE_FORMAT(vendas.data, '%Y-%m') BETWEEN :dataInicio AND :dataFim
 	GROUP BY periodo;
 
 /* 
