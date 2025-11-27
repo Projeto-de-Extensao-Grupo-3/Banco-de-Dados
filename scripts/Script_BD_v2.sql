@@ -360,7 +360,6 @@ SELECT lie_roupa.fk_item_estoque,
 			ON ie.id_item_estoque = cnf.fk_roupa 
 		WHERE c.fk_categoria_pai = 2
 	GROUP BY lie_roupa.fk_item_estoque, ie.descricao, ie.preco;
-
 -- SUBQUERY
 /*
 SELECT cnf.fk_roupa, 
