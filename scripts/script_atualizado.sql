@@ -49,6 +49,7 @@ VALUES
 (2, 1),
 (2, 2),
 (2, 3),
+(2, 4),
 (3, 1),
 (3, 2),
 (3, 3),
@@ -94,52 +95,52 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 );
 -- Categorias roupa e tecido serão fixas no banco de dados.
 INSERT INTO categoria (nome) VALUES
-	('Tecido'),
-	('Roupa'),
-    ('Característica');
+	('Tecido'), -- 1
+	('Roupa'), -- 2
+    ('Característica'); -- 3
 -- Cadastro de subcategorias para tecido e roupa.
 INSERT INTO categoria (nome, fk_categoria_pai) VALUES
-	('Nylon', 1),
-	('Poliéster', 1),
-	('Algodão', 1),
-	('Lã', 1),
-    ('Moletinho', 1),
-    ('Gorgurão', 1),
-    ('Viscolycra', 1),
-    ('Suplex', 1),
+	('Nylon', 1), -- 4
+	('Poliéster', 1), -- 5
+	('Algodão', 1), -- 6
+	('Lã', 1), -- 7
+    ('Moletinho', 1), -- 8
+    ('Gorgurão', 1), -- 9
+    ('Viscolycra', 1), -- 10
+    ('Suplex', 1), -- 11
     
-	('Vestido Manga Curta', 2),
-	('Vestido Canelado Mídi', 2),
-	('Vestido Regata Estampado', 2),
-	('Vestido Plus', 2),
-	('Blusa Gola Boba', 2),
-	('Blusa Regata Marrocos', 2),
-	('Blusa Gola Quadrada Canelada', 2),
-	('Blusa Gola V Canelada', 2),
-	('Blusa De Ponta', 2),
-	('Blusa Meia Manga', 2),
-	('Blusa Mulet', 2),
-	('Blusa Mulet', 2),
-	('Blusa Paris', 2),
-	('Calça De Montaria Com Bolso', 2),
-	('Calça Flare', 2),
-	('Calça Jogger', 2),
-	('Conjunto Saia', 2),
-	('Conjunto Gabi', 2),
-	('Conjunto Pantalona', 2),
-	('Shorts Moletinho', 2),
-	('Camisa Over', 2);
+	('Vestido Manga Curta', 2), -- 12
+	('Vestido Canelado Mídi', 2), -- 13
+	('Vestido Regata Estampado', 2), -- 14
+	('Vestido Plus', 2), -- 15
+	('Blusa Gola Boba', 2), -- 16
+	('Blusa Regata Marrocos', 2), -- 17
+	('Blusa Gola Quadrada Canelada', 2), -- 18
+	('Blusa Gola V Canelada', 2), -- 19
+	('Blusa De Ponta', 2), -- 20
+	('Blusa Meia Manga', 2), -- 21
+	('Blusa Mulet', 2), -- 22
+	('Blusa Mulet', 2), -- 23
+	('Blusa Paris', 2), -- 24
+	('Calça De Montaria Com Bolso', 2), -- 25
+	('Calça Flare', 2), -- 26
+	('Calça Jogger', 2), -- 27
+	('Conjunto Saia', 2), -- 28
+	('Conjunto Gabi', 2), -- 29
+	('Conjunto Pantalona', 2), -- 30
+	('Shorts Moletinho', 2), -- 31
+	('Camisa Over', 2); -- 32
 -- Cadastro de características de tecido e produto.
 INSERT INTO categoria (nome, fk_categoria_pai) VALUES
-	('Azul', 3),
-	('Vermelho', 3),
-	('Verde', 3),
-	('Amarelo', 3),
-	('Cinza', 3),
-	('Listrado', 3),
-	('Liso', 3),
-	('Florido', 3),
-	('Geométrico', 3);
+	('Azul', 3), -- 33
+	('Vermelho', 3), -- 34
+	('Verde', 3), -- 35
+	('Amarelo', 3), -- 36
+	('Cinza', 3), -- 37
+	('Listrado', 3), -- 38
+	('Liso', 3), -- 39
+	('Florido', 3), -- 40
+	('Geométrico', 3); -- 41
 
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
@@ -153,11 +154,11 @@ INSERT INTO imagem (url) VALUES
 	("https://images.tcdn.com.br/img/img_prod/632834/rolo_de_tecido_tule_50_metros_x_1_20_mt_largura_vermelho_9911_1_1cdde84963063c6dbefff762c02f8b95.jpg"),
 	("https://tfcszo.vteximg.com.br/arquivos/ids/195046/6661-TECIDO-TRICOLINE-ESTAMPADO-FLORAL-AZUL-MARINHO--2-.jpg?v=638521737026530000"),
 	("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDWAcBlgdzuPL_hGF8qPuVGKpKo6cruBwmQ&s"),
-	("https://static.vecteezy.com/system/resources/thumbnails/008/695/917/small/no-image-available-icon-simple-two-colors-template-for-no-image-or-picture-coming-soon-and-placeholder-illustration-isolated-on-white-background-vector.jpg");
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/placeholder.jpg");
 
 CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
-  `fk_categoria` INT NOT NULL,
+  `fk_categoria` INT,
   `fk_prateleira` INT,
   `fk_imagem` INT,
   `descricao` VARCHAR(100),
@@ -246,19 +247,36 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
 );
 -- Cadastro de características de cada produto e tecido.
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
-	(14, 1),
-	(21, 1),
-	(15, 2),
-	(20, 2),
-	(18, 3),
-	(19, 3),
-	(15, 3),
-	(15, 4),
-	(20, 4),
-	(14, 5),
-	(21, 5),
-	(18, 6),
-	(20, 6);
+	(33, 1),
+	(33, 2),
+	(33, 3),
+	(33, 4),
+	(33, 5),
+	(33, 6),
+	(33, 7),
+	(33, 8),
+	(33, 9),
+	(33, 10),
+	(33, 11),
+	(33, 12),
+	(33, 13),
+	(33, 14),
+	(33, 15),
+	(33, 16),
+	(33, 17),
+	(33, 18),
+	(33, 19),
+	(33, 20),
+	(33, 21),
+	(33, 22),
+	(33, 23),
+	(33, 24),
+	(33, 25),
+	(33, 26),
+	(33, 27),
+	(33, 28),
+	(33, 29),
+	(33, 30);
 
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `id_confeccao_roupa` INT PRIMARY KEY AUTO_INCREMENT,
