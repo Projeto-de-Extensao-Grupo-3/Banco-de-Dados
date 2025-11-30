@@ -132,15 +132,20 @@ INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 	('Camisa Over', 2); -- 32
 -- Cadastro de características de tecido e produto.
 INSERT INTO categoria (nome, fk_categoria_pai) VALUES
-	('Azul', 3), -- 33
-	('Vermelho', 3), -- 34
-	('Verde', 3), -- 35
-	('Amarelo', 3), -- 36
-	('Cinza', 3), -- 37
-	('Listrado', 3), -- 38
-	('Liso', 3), -- 39
-	('Florido', 3), -- 40
-	('Geométrico', 3); -- 41
+	('Canelado Premium', 3), -- 33
+	('Canelado', 3), -- 34
+	('Regata', 3), -- 35
+	('Estampado', 3), -- 36
+	('Gola Boba', 3), -- 37
+	('Manga Longa', 3), -- 38
+	('Gola Quadrada', 3), -- 39
+	('Gola V', 3), -- 40
+	('Montaria', 3), -- 41
+	('Com Touca', 3), -- 43
+	('Geométrico', 3), -- 43
+	('Peluciada', 3), -- 44
+	('Mulet', 3), -- 45
+	('Liso', 3); -- 46
 
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
@@ -248,35 +253,27 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
 -- Cadastro de características de cada produto e tecido.
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
 	(33, 1),
-	(33, 2),
-	(33, 3),
-	(33, 4),
-	(33, 5),
-	(33, 6),
-	(33, 7),
-	(33, 8),
-	(33, 9),
-	(33, 10),
-	(33, 11),
-	(33, 12),
-	(33, 13),
-	(33, 14),
-	(33, 15),
-	(33, 16),
-	(33, 17),
-	(33, 18),
-	(33, 19),
-	(33, 20),
-	(33, 21),
-	(33, 22),
-	(33, 23),
-	(33, 24),
-	(33, 25),
-	(33, 26),
-	(33, 27),
-	(33, 28),
-	(33, 29),
-	(33, 30);
+	(34, 2),
+	(35, 3),
+	(36, 4),
+	(37, 5),
+	(35, 6),
+	(38, 7),
+	(38, 8),
+	(46, 9),
+	(39, 10),
+	(45, 11),
+	(35, 12),
+	(41, 13),
+	(44, 14),
+	(46, 15),
+	(46, 16),
+	(43, 17),
+	(46, 18),
+	(46, 19),
+	(46, 20),
+	(36, 21),
+	(46, 22);
 
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `id_confeccao_roupa` INT PRIMARY KEY AUTO_INCREMENT,
