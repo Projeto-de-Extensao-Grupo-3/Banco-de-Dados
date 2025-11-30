@@ -215,8 +215,8 @@ VALUES
 (15, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 18, 0.60, 5, 50, 75.00, false), -- 18
 (16, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 19, 0.30, 5, 34, 25.00, false), -- 19
 (17, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 20, 0.30, 5, 42, 25.00, false), -- 20
-(29, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 21, 0.50, 5, 33, 49.00, false), -- 21
-(30, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 22, 0.50, 5, 46, 47.00, false), -- 22
+(17, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 21, 0.50, 5, 33, 49.00, false), -- 21
+(17, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 22, 0.50, 5, 46, 47.00, false), -- 22
 
 -- TECIDOS (usando prateleiras 11-18, IDs 11-18 = códigos '1T' a '8T')
 (4, 11, 'Tecido Nylon', 'Rolo 50m', 23, 1.00, 5, 200, 1.60, false),
