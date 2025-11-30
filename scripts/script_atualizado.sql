@@ -116,20 +116,21 @@ INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 -- Cadastro de características de tecido e produto.
 INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 
-	('Canelado', 3), -- 19
-	('Regata', 3), -- 20
-	('Estampado', 3), -- 21
-	('Gola Boba', 3), -- 22
-	('Manga Longa', 3), -- 23
-	('Gola Quadrada', 3), -- 24
-	('Gola V', 3), -- 25
-	('Montaria', 3), -- 26
-	('Com Touca', 3), -- 27
-	('Geométrico', 3), -- 28
-	('Peluciada', 3), -- 29
-	('Mulet', 3), -- 30
-	('Liso', 3), -- 31
-	('Canelado Premium', 3); -- 32
+	('Canelado', 3), -- 18
+	('Regata', 3), -- 19
+	('Estampado', 3), -- 20
+	('Gola Boba', 3), -- 21
+	('Manga Longa', 3), -- 22
+	('Gola Quadrada', 3), -- 23
+	('Gola V', 3), -- 24
+	('Montaria', 3), -- 25
+	('Com Touca', 3), -- 26
+	('Geométrico', 3), -- 27
+	('Peluciada', 3), -- 28
+	('Mulet', 3), -- 29
+	('Liso', 3), -- 30
+	('Canelado Premium', 3), -- 31
+    ('Manga Curta', 3); -- 32
 
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
@@ -137,13 +138,40 @@ CREATE TABLE IF NOT EXISTS `imagem` (
 );
 
 INSERT INTO imagem (url) VALUES
-	("https://cdn.awsli.com.br/600x700/143/143951/produto/32328172/7fa3e6d61c.jpg"),
-	("https://static.zattini.com.br/produtos/camiseta-masculina-algodao-basica-camisa-lisa-vermelha/16/GZ0-0008-016/GZ0-0008-016_zoom1.jpg?ts=1670339407"),
-	("https://lojaspeedo.vtexassets.com/arquivos/ids/206110/139569Q_245049_1-BERMUDA-BOLD.jpg?v=637945525518130000"),
-	("https://images.tcdn.com.br/img/img_prod/632834/rolo_de_tecido_tule_50_metros_x_1_20_mt_largura_vermelho_9911_1_1cdde84963063c6dbefff762c02f8b95.jpg"),
-	("https://tfcszo.vteximg.com.br/arquivos/ids/195046/6661-TECIDO-TRICOLINE-ESTAMPADO-FLORAL-AZUL-MARINHO--2-.jpg?v=638521737026530000"),
-	("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDWAcBlgdzuPL_hGF8qPuVGKpKo6cruBwmQ&s"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/placeholder.jpg");
+-- Roupas
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_manga_curta.jpeg"), -- 1
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_canelado_midi.jpeg"), -- 2
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_regata_viscolycra_estampado.jpeg"), -- 3
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_viscolycra_plus.jpeg"), -- 4
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_boba.jpeg"), -- 5
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_regata_marrocos_suplex.jpeg"), -- 6
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_quadrada_canelada_peluciada.jpeg"), -- 7
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_v_canelada_peluciada.jpeg"), -- 8
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_de_ponta.jpeg"), -- 9
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_canelada_peluciada_meia_manga.jpeg"), -- 10
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_mulet.jpeg"), -- 11
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_paris.jpeg"), -- 12
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_montaria_gorgurao_bolso.jpeg"), -- 13
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_flaire_suplex_peluciada.jpeg"), -- 14
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_jogger.jpeg"), -- 15
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_saia.jpeg"), -- 16
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_gabi_ctouca.jpeg"), -- 17
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_pantalona.jpeg"), -- 18
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/shorts_moletinho_viscolycra.jpeg"), -- 19
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/camisa_over.jpeg"), -- 20
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/macacao_livia_estampado.jpeg"), -- 21
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/macacao_livia.jpeg"), -- 22
+-- Tecidos
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido-nylon.webp"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_poliester.jpg"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_algodao.jpg"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_la.webp"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_moletinho.webp"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_gorgurao.jpeg"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_viscolycra.webp"),
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_suplex.jpg"),
+-- placeholder
+	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/placeholder.jpg"); -- 23
 
 CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
@@ -167,38 +195,38 @@ select * from categoria;
 INSERT INTO item_estoque (fk_categoria, fk_prateleira, descricao, complemento,fk_imagem, peso, qtd_minimo, qtd_armazenado, preco, notificar)
 VALUES
 -- ROUPAS (usando prateleiras 1-10 para roupas, IDs 1-10)
-(12, 1, 'Vestido Manga Curta', 'Canelado Premium / Viscose / P, M & G',7, 0.35, 5, 21, 35.00, false),
-(12, 2, 'Vestido Canelado Mídi', 'Canelado / Viscose / P, M & G', 7, 0.35, 5, 26, 35.00, false),
-(12, 3, 'Vestido Regata Estampado', 'Regata / Viscolycra / P, M & G', 7, 0.35, 5, 47, 25.00, false),
-(12, 4, 'Vestido Plus', 'Estampado / Viscolycra / Plus', 7, 0.45, 5, 42, 35.00, false),
-(13, 5, 'Blusa Gola Boba', 'Gola Boba / Suplex / P, M & G', 7, 0.25, 5, 35, 20.00, false),
-(13, 6, 'Blusa Regata Marrocos', 'Regata / Suplex / P, M & G', 7, 0.25, 5, 34, 20.00, false),
-(13, 7, 'Blusa Gola Quadrada Canelada', 'Manga Longa / Gola Quadrada / Viscolycra / U & Plus', 7,0.30, 5, 28, 22.00, false),
-(13, 8, 'Blusa Gola V Canelada', 'Manga Longa / Gola V / Viscolycra / U & Plus', 7, 0.30, 5, 47, 22.00, false),
-(13, 9, 'Blusa De Ponta', 'Viscolycra / 40 ao 50', 7, 0.30, 5, 50, 22.00, false),
-(13, 10, 'Blusa Meia Manga', 'Gola Quadrada Canelada / Tamanho Único', 7, 0.25, 5, 46, 20.00, false),
-(13, 1, 'Blusa Mulet', 'Mulet / Viscolycra / 38 ao 48', 7, 0.25, 5, 44, 27.00, false),
-(13, 2, 'Blusa Paris', 'Regata / Suplex Premium / P, M & G',7, 0.25, 5, 42, 20.00, false),
-(14, 3, 'Calça De Montaria Com Bolso', 'Montaria / Gorgurão / P, M, G & GG', 7, 0.40, 5, 9, 30.00, false),
-(14, 4, 'Calça Flare', 'Peluciada / Suplex / P, M & G', 7, 0.40, 5, 33, 35.00, false),
-(14, 5, 'Calça Jogger', 'Moletinho / Moletinho Viscose', 7, 0.40, 5, 50, 35.00, false),
-(15, 6, 'Conjunto Saia', 'Conjunto / Viscolycra / 38 ao 48', 7, 0.60, 5, 35, 49.00, false),
-(15, 7, 'Conjunto Gabi', 'Com Touca / Moletinho / P, M & G', 7, 0.60, 5, 45, 75.00, false),
-(15, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 7, 0.60, 5, 50, 75.00, false),
-(16, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 7, 0.30, 5, 34, 25.00, false),
-(17, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 7, 0.30, 5, 42, 25.00, false),
-(29, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 7, 0.50, 5, 33, 49.00, false),
-(30, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 7, 0.50, 5, 46, 47.00, false),
+(12, 1, 'Vestido Manga Curta', 'Canelado Premium / Viscose / P, M & G',1, 0.35, 5, 21, 35.00, false), -- 1
+(12, 2, 'Vestido Canelado Mídi', 'Canelado / Viscose / P, M & G', 2, 0.35, 5, 26, 35.00, false), -- 2
+(12, 3, 'Vestido Regata Estampado', 'Regata / Viscolycra / P, M & G', 3, 0.35, 5, 47, 25.00, false), -- 3
+(12, 4, 'Vestido Plus', 'Estampado / Viscolycra / Plus', 4, 0.45, 5, 42, 35.00, false), -- 4
+(13, 5, 'Blusa Gola Boba', 'Gola Boba / Suplex / P, M & G', 5, 0.25, 5, 35, 20.00, false), -- 5
+(13, 6, 'Blusa Regata Marrocos', 'Regata / Suplex / P, M & G', 6, 0.25, 5, 34, 20.00, false), -- 6
+(13, 7, 'Blusa Gola Quadrada Canelada', 'Manga Longa / Gola Quadrada / Viscolycra / U & Plus', 7,0.30, 5, 28, 22.00, false), -- 7
+(13, 8, 'Blusa Gola V Canelada', 'Manga Longa / Gola V / Viscolycra / U & Plus', 8, 0.30, 5, 47, 22.00, false), -- 8
+(13, 9, 'Blusa De Ponta', 'Viscolycra / 40 ao 50', 9, 0.30, 5, 50, 22.00, false), -- 9
+(13, 10, 'Blusa Meia Manga', 'Gola Quadrada Canelada / Tamanho Único', 10, 0.25, 5, 46, 20.00, false), -- 10
+(13, 1, 'Blusa Mulet', 'Mulet / Viscolycra / 38 ao 48', 11, 0.25, 5, 44, 27.00, false), -- 11
+(13, 2, 'Blusa Paris', 'Regata / Suplex Premium / P, M & G',12, 0.25, 5, 42, 20.00, false), -- 12
+(14, 3, 'Calça De Montaria Com Bolso', 'Montaria / Gorgurão / P, M, G & GG', 13, 0.40, 5, 9, 30.00, false), -- 13
+(14, 4, 'Calça Flare', 'Peluciada / Suplex / P, M & G', 14, 0.40, 5, 33, 35.00, false), -- 14
+(14, 5, 'Calça Jogger', 'Moletinho / Moletinho Viscose', 15, 0.40, 5, 50, 35.00, false), -- 15
+(15, 6, 'Conjunto Saia', 'Conjunto / Viscolycra / 38 ao 48', 16, 0.60, 5, 35, 49.00, false), -- 16
+(15, 7, 'Conjunto Gabi', 'Com Touca / Moletinho / P, M & G', 17, 0.60, 5, 45, 75.00, false), -- 17
+(15, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 18, 0.60, 5, 50, 75.00, false), -- 18
+(16, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 19, 0.30, 5, 34, 25.00, false), -- 19
+(17, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 20, 0.30, 5, 42, 25.00, false), -- 20
+(29, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 21, 0.50, 5, 33, 49.00, false), -- 21
+(30, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 22, 0.50, 5, 46, 47.00, false), -- 22
 
 -- TECIDOS (usando prateleiras 11-18, IDs 11-18 = códigos '1T' a '8T')
-(4, 11, 'Tecido Nylon', 'Rolo 50m', 7, 1.00, 5, 200, 1.60, false),
-(5, 12, 'Tecido Poliéster', 'Rolo 50m', 7, 1.00, 5, 200, 1.40, false),
-(6, 13, 'Tecido Algodão', 'Rolo 50m', 7, 1.00, 5, 200, 1.80, false),
-(7, 14, 'Tecido Lã', 'Rolo 50m',7, 1.00, 5, 200, 2.40, false),
-(8, 15, 'Tecido Moletinho', 'Rolo 50m',7, 1.00, 5, 250, 2.00, false),
-(9, 16, 'Tecido Gorgurão', 'Rolo 50m',7, 1.00, 5, 202, 1.80, false),
-(10, 17, 'Tecido Viscolycra', 'Rolo 50m',7, 1.00, 5, 200, 2.20, false),
-(11 18, 'Tecido Suplex', 'Rolo 50m',7, 1.00, 5, 190, 1.90, false);
+(4, 11, 'Tecido Nylon', 'Rolo 50m', 23, 1.00, 5, 200, 1.60, false),
+(5, 12, 'Tecido Poliéster', 'Rolo 50m', 24, 1.00, 5, 200, 1.40, false),
+(6, 13, 'Tecido Algodão', 'Rolo 50m', 25, 26.00, 5, 200, 1.80, false),
+(7, 14, 'Tecido Lã', 'Rolo 50m',26, 1.00, 26, 200, 2.40, false),
+(8, 15, 'Tecido Moletinho', 'Rolo 50m',27, 1.00, 5, 250, 2.00, false),
+(9, 16, 'Tecido Gorgurão', 'Rolo 50m',28, 1.00, 5, 202, 1.80, false),
+(10, 17, 'Tecido Viscolycra', 'Rolo 50m',29, 1.00, 5, 200, 2.20, false),
+(11, 18, 'Tecido Suplex', 'Rolo 50m',30, 1.00, 5, 190, 1.90, false);
 
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
@@ -236,28 +264,28 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
 );
 -- Cadastro de características de cada produto e tecido.
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
-	(33, 1),
-	(34, 2),
-	(35, 3),
-	(36, 4),
-	(37, 5),
-	(35, 6),
-	(38, 7),
-	(38, 8),
-	(46, 9),
-	(39, 10),
-	(45, 11),
-	(35, 12),
-	(41, 13),
-	(44, 14),
-	(46, 15),
-	(46, 16),
-	(43, 17),
-	(46, 18),
-	(46, 19),
-	(46, 20),
-	(36, 21),
-	(46, 22);
+	(32, 1),
+	(18, 2),
+	(20, 3),
+	(20, 4),
+	(21, 5),
+	(19, 6),
+	(22, 7),
+	(22, 8),
+	(30, 9),
+	(23, 10),
+	(29, 11),
+	(19, 12),
+	(25, 13),
+	(28, 14),
+	(30, 15),
+	(30, 16),
+	(26, 17),
+	(30, 18),
+	(30, 19),
+	(32, 20),
+	(20, 21),
+	(27, 22);
 
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `id_confeccao_roupa` INT PRIMARY KEY AUTO_INCREMENT,
