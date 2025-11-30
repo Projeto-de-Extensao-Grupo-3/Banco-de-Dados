@@ -1,4 +1,4 @@
 FROM mysql:latest
 WORKDIR /
-COPY ./src/ /docker-entrypoint-initdb.d/
+COPY ./scripts/script_atualizado.sql /docker-entrypoint-initdb.d/
 EXPOSE 3306

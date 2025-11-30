@@ -1,0 +1,56 @@
+name: CI/CD para EC2 privada (BD)
+
+on:
+  push:
+    branches:
+      - main # O branch que acionará o deploy
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do código
+      - name: Checkout do Repositório
+        uses: actions/checkout@v4
+
+      # 4. Login no Docker Hub
+      - name: Docker Login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # 5. Build e push da imagem Docker para o Docker Hub
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKERHUB_REPOSITORY }}:latest
+      
+      # 6. Deploy na EC2 via SSH: pull a nova imagem e reinicia o container
+      - name: Deploy to EC2 (pull image and restart)
+        env:
+          BASTION_HOST: ${{ secrets.BASTION_HOST }}
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # optional: add hosts to known_hosts (or use StrictHostKeyChecking=no)
+          ssh-keyscan -H "$BASTION_HOST" >> ~/.ssh/known_hosts || true
+          ssh-keyscan -H "$REMOTE_HOST" >> ~/.ssh/known_hosts || true
+          # Reiniciar containers (usa here-doc para evitar problemas de escape)
+          ssh -o StrictHostKeyChecking=no -J "${REMOTE_USER}@${BASTION_HOST}" -i ~/.ssh/id_rsa "${REMOTE_USER}@${REMOTE_HOST}" <<'REMOTE_EOF'
+          if command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then
+            docker compose down || true
+            nohup docker compose up -d --pull always >/dev/null 2>&1 &
+          else
+            docker-compose down || true
+            nohup docker-compose up -d --pull always >/dev/null 2>&1 &
+          fi
+          REMOTE_EOF
+    
