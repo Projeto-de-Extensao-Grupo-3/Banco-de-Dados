@@ -2,6 +2,19 @@ DROP DATABASE IF EXISTS projeto_extensao;
 CREATE DATABASE projeto_extensao;
 USE projeto_extensao;
 
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `funcionario` (
   `id_funcionario` INT PRIMARY KEY AUTO_INCREMENT,
   `nome` VARCHAR(80),
@@ -10,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `funcionario` (
   `email` VARCHAR(60),
   `senha` VARCHAR(80)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de funcionários.
 INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Fanuel Felix', '00000000000', '11930032478', 'fanu@gmail.com', '123456@'),
@@ -19,10 +34,14 @@ INSERT INTO funcionario (nome, cpf, telefone, email, senha) VALUES
 	('Tiago Cartaxo', '33333333333', '11930032499', 'tiago@gmail.com', '123456@'),
 	('Douglas Mario', '44444444444', '11930032477', 'douglas@gmail.com', '123456@');
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `permissao` (
   `id_permissao` INT PRIMARY KEY AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Permissões serão fixas no banco, não será necessário cadastro ou atualização
 INSERT INTO permissao (descricao) VALUES
 	('EDITAR ESTOQUE'),
@@ -31,6 +50,8 @@ INSERT INTO permissao (descricao) VALUES
 	('CADASTRAR ITEM ESTOQUE'),
 	('RECEBER ALERTAS DE FALTA ESTOQUE');
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `controle_acesso` (
   `fk_funcionario` INT NOT NULL,
   `fk_permissao` INT NOT NULL,
@@ -38,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `controle_acesso` (
   FOREIGN KEY (`fk_funcionario`) REFERENCES `funcionario` (`id_funcionario`),
   FOREIGN KEY (`fk_permissao`) REFERENCES `permissao` (`id_permissao`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastrar as permissões de acesso do funcionário. 
 INSERT INTO controle_acesso (fk_funcionario, fk_permissao)
 VALUES 
@@ -58,10 +81,14 @@ VALUES
 (5, 2),
 (5, 3);
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `prateleira` (
   `id_prateleira` INT PRIMARY KEY AUTO_INCREMENT,
   `codigo` VARCHAR(10) UNIQUE NOT NULL
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de identificação de prateleiras/local de armazenamento.
 INSERT INTO prateleira (codigo) VALUES
 	('1R'),
@@ -85,12 +112,16 @@ INSERT INTO prateleira (codigo) VALUES
 	('9T'),
 	('10T');
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id_categoria` INT PRIMARY KEY AUTO_INCREMENT,
   `nome` VARCHAR(45),
   `fk_categoria_pai` INT,
   FOREIGN KEY (`fk_categoria_pai`) REFERENCES `categoria` (`id_categoria`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Categorias roupa e tecido serão fixas no banco de dados.
 INSERT INTO categoria (nome) VALUES
 	('Tecido'), -- 1
@@ -132,10 +163,13 @@ INSERT INTO categoria (nome, fk_categoria_pai) VALUES
 	('Canelado Premium', 3), -- 31
     ('Manga Curta', 3); -- 32
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `imagem` (
 	`id_imagem` INT PRIMARY KEY AUTO_INCREMENT,
     `url` VARCHAR(300)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 INSERT INTO imagem (url) VALUES
 -- Roupas
@@ -173,6 +207,8 @@ INSERT INTO imagem (url) VALUES
 -- placeholder
 	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/placeholder.jpg"); -- 23
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `item_estoque` (
   `id_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
   `fk_categoria` INT,
@@ -189,6 +225,7 @@ CREATE TABLE IF NOT EXISTS `item_estoque` (
   FOREIGN KEY (`fk_prateleira`) REFERENCES `prateleira` (`id_prateleira`),
   FOREIGN KEY (`fk_imagem`) REFERENCES `imagem` (`id_imagem`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 select * from categoria;
 -- Cadastro de itens do estoque (peças de roupa e tecidos).
@@ -228,6 +265,8 @@ VALUES
 (10, 17, 'Tecido Viscolycra', 'Rolo 50m',29, 1.00, 5, 200, 2.20, false),
 (11, 18, 'Tecido Suplex', 'Rolo 50m',30, 1.00, 5, 190, 1.90, false);
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `alerta` (
   `id_alerta` INT PRIMARY KEY AUTO_INCREMENT,
   `fk_item_estoque` INT NOT NULL,
@@ -235,6 +274,7 @@ CREATE TABLE IF NOT EXISTS `alerta` (
   `data_hora` DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Alerta de estoque (Blusa Gola V)
 INSERT INTO alerta (fk_item_estoque, descricao, data_hora) VALUES
@@ -255,6 +295,8 @@ INSERT INTO alerta (fk_item_estoque, descricao, data_hora) VALUES
 INSERT INTO alerta (fk_item_estoque, descricao, data_hora) VALUES
 (11, 'Estoque abaixo do mínimo', '2025-09-25 11:00:00');
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
   `fk_categoria` INT NOT NULL,
   `fk_item_estoque` INT NOT NULL,
@@ -262,6 +304,8 @@ CREATE TABLE IF NOT EXISTS `caracteristica_item_estoque` (
   FOREIGN KEY (`fk_categoria`) REFERENCES `categoria` (`id_categoria`),
   FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de características de cada produto e tecido.
 INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
 	(32, 1),
@@ -287,6 +331,8 @@ INSERT INTO caracteristica_item_estoque (fk_categoria, fk_item_estoque) VALUES
 	(20, 21),
 	(27, 22);
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   `id_confeccao_roupa` INT PRIMARY KEY AUTO_INCREMENT,
   `fk_roupa` INT NOT NULL,
@@ -295,6 +341,7 @@ CREATE TABLE IF NOT EXISTS `confeccao_roupa` (
   FOREIGN KEY (`fk_roupa`) REFERENCES `item_estoque` (`id_item_estoque`),
   FOREIGN KEY (`fk_tecido`) REFERENCES `item_estoque` (`id_item_estoque`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- CONFECCAO_ROUPA CORRIGIDO
 -- Agora fk_tecido aponta para os IDs corretos de tecidos (23-30)
@@ -322,6 +369,8 @@ INSERT INTO confeccao_roupa (fk_roupa, fk_tecido, qtd_tecido) VALUES
 (21, 29, 7.5),  -- Macacão Lívia (Estampado) → Viscolycra
 (22, 29, 7.5);  -- Macacão Lívia (Sem estampa) → Viscolycra
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `parceiro` (
   `id_parceiro` INT PRIMARY KEY AUTO_INCREMENT,
   `categoria` VARCHAR(45),
@@ -331,6 +380,8 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
   `endereco` VARCHAR(80),
   `identificacao` VARCHAR(20)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
 INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao) VAlUES 
 	('costureira', 'Andresa', '11938563748', 'andresa@gmail.com', 'Rua Aurora, número 72', '00000000000'),
@@ -341,6 +392,8 @@ INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao)
 	('costureira', 'Gildete', '11938563748', 'rebeca@gmail.com', 'Rua Dois, número 1', '00000000002'),
 	('fornecedor', 'Fornecedor Brás', '11918465729', 'fornecedorbrass@gmail.com', 'Rua Brás, número 1255', '00000000000000');
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `lote` (
   `id_lote` INT PRIMARY KEY AUTO_INCREMENT,
   `descricao` VARCHAR(45),
@@ -350,6 +403,8 @@ CREATE TABLE IF NOT EXISTS `lote` (
   FOREIGN KEY (`fk_parceiro`) REFERENCES `parceiro` (`id_parceiro`),
   FOREIGN KEY (`fk_responsavel`) REFERENCES `funcionario` (`id_funcionario`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de lote de roupa.
 INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
 	('lote de roupas', '2025-04-20 11:36:00', 1, 1);
@@ -357,6 +412,8 @@ INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES
 INSERT INTO lote (descricao, dt_entrada, fk_parceiro, fk_responsavel) VAlUES 
 	('lote de tecido', '2025-04-20 11:36:00', 2, 2);
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
   `id_lote_item_estoque` INT PRIMARY KEY AUTO_INCREMENT,
   `fk_item_estoque` INT,
@@ -366,6 +423,7 @@ CREATE TABLE IF NOT EXISTS `lote_item_estoque` (
   FOREIGN KEY (`fk_item_estoque`) REFERENCES `item_estoque` (`id_item_estoque`),
   FOREIGN KEY (`fk_lote`)REFERENCES `lote` (`id_lote`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Roupas (lote 1) - APENAS CUSTO DE COSTURA POR PEÇA (REDUZIDO)
 INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES
@@ -403,6 +461,8 @@ INSERT INTO lote_item_estoque (fk_lote, fk_item_estoque, qtd_item, preco) VALUES
 (2, 29, 210, 462.00),  -- Viscolycra: m * R$2.20/m
 (2, 30, 200, 380.00);  -- Suplex: m * R$1.90/m
 
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE IF NOT EXISTS `saida_estoque` (
   `id_saida_estoque` INT PRIMARY KEY AUTO_INCREMENT,
   `data` DATE,
@@ -416,6 +476,8 @@ CREATE TABLE IF NOT EXISTS `saida_estoque` (
   FOREIGN KEY (`fk_lote_item_estoque`) REFERENCES `lote_item_estoque` (`id_lote_item_estoque`),
   FOREIGN KEY (`fk_costureira`) REFERENCES `parceiro` (`id_parceiro`)
 );
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 -- Cadastro de saída do estoque (envio para costura).
 -- INSERT INTO saida_estoque (data, hora, qtd_saida, motivo_saida, fk_responsavel, fk_lote_item_estoque, fk_costureira)
 -- VAlUES (current_date(), current_time(), 2.50, 'envio de tecido para costura', 1, 6, 1);
