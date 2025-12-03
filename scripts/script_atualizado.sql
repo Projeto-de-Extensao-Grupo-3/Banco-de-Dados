@@ -173,39 +173,39 @@ CREATE TABLE IF NOT EXISTS `imagem` (
 
 INSERT INTO imagem (url) VALUES
 -- Roupas
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_manga_curta.jpeg"), -- 1
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_canelado_midi.jpeg"), -- 2
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_regata_viscolycra_estampado.jpeg"), -- 3
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/vestido_viscolycra_plus.jpeg"), -- 4
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_boba.jpeg"), -- 5
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_regata_marrocos_suplex.jpeg"), -- 6
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_quadrada_canelada_peluciada.jpeg"), -- 7
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_gola_v_canelada_peluciada.jpeg"), -- 8
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_de_ponta.jpeg"), -- 9
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_canelada_peluciada_meia_manga.jpeg"), -- 10
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_mulet.jpeg"), -- 11
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/blusa_paris.jpeg"), -- 12
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_montaria_gorgurao_bolso.jpeg"), -- 13
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_flaire_suplex_peluciada.jpeg"), -- 14
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/calca_jogger.jpeg"), -- 15
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_saia.jpeg"), -- 16
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_gabi_ctouca.jpeg"), -- 17
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/conjunto_pantalona.jpeg"), -- 18
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/shorts_moletinho_viscolycra.jpeg"), -- 19
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/camisa_over.jpeg"), -- 20
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/macacao_livia_estampado.jpeg"), -- 21
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/macacao_livia.jpeg"), -- 22
+	("vestido_manga_curta.jpeg"), -- 1
+	("vestido_canelado_midi.jpeg"), -- 2
+	("vestido_regata_viscolycra_estampado.jpeg"), -- 3
+	("vestido_viscolycra_plus.jpeg"), -- 4
+	("blusa_gola_boba.jpeg"), -- 5
+	("blusa_regata_marrocos_suplex.jpeg"), -- 6
+	("blusa_gola_quadrada_canelada_peluciada.jpeg"), -- 7
+	("blusa_gola_v_canelada_peluciada.jpeg"), -- 8
+	("blusa_de_ponta.jpeg"), -- 9
+	("blusa_canelada_peluciada_meia_manga.jpeg"), -- 10
+	("blusa_mulet.jpeg"), -- 11
+	("blusa_paris.jpeg"), -- 12
+	("calca_montaria_gorgurao_bolso.jpeg"), -- 13
+	("calca_flaire_suplex_peluciada.jpeg"), -- 14
+	("calca_jogger.jpeg"), -- 15
+	("conjunto_saia.jpeg"), -- 16
+	("conjunto_gabi_ctouca.jpeg"), -- 17
+	("conjunto_pantalona.jpeg"), -- 18
+	("shorts_moletinho_viscolycra.jpeg"), -- 19
+	("camisa_over.jpeg"), -- 20
+	("macacao_livia_estampado.jpeg"), -- 21
+	("macacao_livia.jpeg"), -- 22
 -- Tecidos
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido-nylon.webp"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_poliester.jpg"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_algodao.jpg"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_la.webp"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_moletinho.webp"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_gorgurao.jpeg"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_viscolycra.webp"),
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/tecido_suplex.jpg"),
+	("tecido-nylon.webp"),
+	("tecido_poliester.jpg"),
+	("tecido_algodao.jpg"),
+	("tecido_la.webp"),
+	("tecido_moletinho.webp"),
+	("tecido_gorgurao.jpeg"),
+	("tecido_viscolycra.webp"),
+	("tecido_suplex.jpg"),
 -- placeholder
-	("https://img-bucket-teste.s3.us-east-1.amazonaws.com/placeholder.jpg"); -- 23
+	("placeholder.jpg"); -- 23
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
