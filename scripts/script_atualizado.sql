@@ -252,7 +252,7 @@ VALUES
 (15, 8, 'Conjunto Pantalona', 'Pantalona / Moletinho / M, G & G1', 18, 0.60, 5, 50, 75.00, false), -- 18
 (16, 9, 'Shorts Moletinho', 'Moletinho / Moletinho Viscolycra / P, M & G', 19, 0.30, 5, 34, 25.00, false), -- 19
 (17, 10, 'Camisa Over', 'Moletinho / Moletinho Viscolycra / P, M & G', 20, 0.30, 5, 42, 25.00, false), -- 20
-(17, 1, 'Macacão Lívia', 'Estampado / Geométrico / 40 ao 48', 21, 0.50, 5, 33, 49.00, false), -- 21
+(17, 1, 'Macacão Lívia Estampado', 'Estampado / Geométrico / 40 ao 48', 21, 0.50, 5, 33, 49.00, false), -- 21
 (17, 2, 'Macacão Lívia', 'Sem estampa / Geométrico / 40 ao 48', 22, 0.50, 5, 46, 47.00, false), -- 22
 
 -- TECIDOS (usando prateleiras 11-18, IDs 11-18 = códigos '1T' a '8T')
@@ -384,12 +384,12 @@ CREATE TABLE IF NOT EXISTS `parceiro` (
 
 -- Cadastro de um serviço terceirizado (costura e fornecedor).
 INSERT INTO parceiro (categoria, nome, telefone, email, endereco, identificacao) VAlUES 
-	('costureira', 'Andresa', '11938563748', 'andresa@gmail.com', 'Rua Aurora, número 72', '00000000000'),
-	('costureira', 'Maria', '11938563748', 'maria@gmail.com', 'Rua Y, número 171', '00000000001'),
-	('costureira', 'Rute', '11938563748', 'rebeca@gmail.com', 'Rua Tal, número 442', '00000000002'),
-	('costureira', 'Sueli', '11938563748', 'rebeca@gmail.com', 'Rua Z, núemro 777', '00000000002'),
-	('costureira', 'Vera', '11938563748', 'rebeca@gmail.com', 'Rua Um, número 2', '00000000002'),
-	('costureira', 'Gildete', '11938563748', 'rebeca@gmail.com', 'Rua Dois, número 1', '00000000002'),
+	('costureira', 'Andresa', '11938563741', 'andresa@gmail.com', 'Rua Aurora, número 72', '00000000000'),
+	('costureira', 'Maria', '11938563742', 'maria@gmail.com', 'Rua Y, número 171', '00000000001'),
+	('costureira', 'Rute', '11938563743', 'rute@gmail.com', 'Rua Tal, número 442', '00000000002'),
+	('costureira', 'Sueli', '11938563744', 'sueli@gmail.com', 'Rua Z, núemro 777', '00000000003'),
+	('costureira', 'Vera', '11938563745', 'vera@gmail.com', 'Rua Um, número 2', '00000000004'),
+	('costureira', 'Gildete', '11938563746', 'gildete@gmail.com', 'Rua Dois, número 1', '00000000005'),
 	('fornecedor', 'Fornecedor Brás', '11918465729', 'fornecedorbrass@gmail.com', 'Rua Brás, número 1255', '00000000000000');
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
