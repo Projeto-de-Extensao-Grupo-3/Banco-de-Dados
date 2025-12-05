@@ -236,3 +236,36 @@ SELECT DATE_FORMAT(vendas.data, '%Y-%m') as periodo,
 			ON ie.id_item_estoque = margem_lucro.id
 	WHERE vendas.fk_costureira IS NULL
 	GROUP BY periodo;
+
+
+
+
+
+SELECT
+            ie.descricao AS produto,
+            COALESCE(SUM(se.qtd_saida), 0) AS total_vendido,
+    COUNT(se.id_saida_estoque) AS qtd_vendas,
+    ie.qtd_armazenado AS estoque_atual,
+    DATEDIFF(CURDATE(), MAX(se.data)) AS dias_sem_vender,
+            CASE
+    WHEN DATEDIFF(CURDATE(), MAX(se.data)) > 60 THEN 'CRÍTICO - Liquidar'
+    WHEN DATEDIFF(CURDATE(), MAX(se.data)) > 30 THEN 'ATENÇÃO - Promoção'
+    ELSE 'OK'
+    END AS status_recomendacao
+    FROM item_estoque AS ie
+    LEFT JOIN lote_item_estoque AS lie ON ie.id_item_estoque = lie.fk_item_estoque
+    LEFT JOIN saida_estoque AS se ON lie.id_lote_item_estoque = se.fk_lote_item_estoque
+    AND se.motivo_saida LIKE '%venda%'
+    AND se.data >= '2025-03-01'
+    JOIN categoria as c
+    ON ie.fk_categoria = c.id_categoria
+    LEFT JOIN caracteristica_item_estoque as carac_ie
+    ON ie.id_item_estoque = carac_ie.fk_item_estoque
+    LEFT JOIN categoria as carac
+    ON carac_ie.fk_categoria  = carac.id_categoria
+    WHERE IFNULL(carac.nome, '') LIKE "%%"
+    AND c.nome LIKE "%%"
+    AND c.fk_categoria_pai = 2
+    GROUP BY ie.id_item_estoque, ie.descricao, ie.qtd_armazenado
+    ORDER BY total_vendido ASC, dias_sem_vender DESC
+    LIMIT 5;
